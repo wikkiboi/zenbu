@@ -1,5 +1,5 @@
 import axios from "axios";
-import { TopAnimeFilter, AnimeType, AnimeData } from "./types/types";
+import { TopAnimeFilter, AnimeType, AnimeData } from "../types/types";
 
 export const fetchTopAnime = async (
   filter?: TopAnimeFilter,

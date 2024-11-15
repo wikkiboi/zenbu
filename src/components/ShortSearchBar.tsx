@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { fetchSearchAnime } from "../api/fetchSearchAnime";
+import { fetchSearchAnime } from "../api/fetch/fetchSearchAnime";
 import { useDebounce } from "use-debounce";
 
 export default function ShortSearchBar() {
@@ -27,7 +27,7 @@ export default function ShortSearchBar() {
   if (searchData) console.log(searchData);
 
   return (
-    <div className="flex">
+    <div className="modal-box">
       <input
         type="text"
         className="input grow rounded-3xl"

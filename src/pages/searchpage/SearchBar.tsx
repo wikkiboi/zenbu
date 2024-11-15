@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { fetchSearchAnime } from "../../api/fetchSearchAnime";
+import { fetchSearchAnime } from "../../api/fetch/fetchSearchAnime";
 import { useDebounce } from "use-debounce";
 
-export default function ShortSearchBar() {
+export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [debouncedQuery] = useDebounce(searchQuery, 1000);
   const { data, isLoading, error, isFetching } = useQuery({
@@ -32,7 +32,7 @@ export default function ShortSearchBar() {
         type="text"
         className="input grow rounded-3xl"
         onChange={handleChange}
-        placeholder="Search"
+        placeholder="type in keywords..."
       ></input>
     </div>
   );

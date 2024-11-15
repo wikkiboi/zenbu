@@ -4,7 +4,8 @@ import {
   persistQueryClient,
   removeOldestQuery,
 } from "@tanstack/react-query-persist-client";
-import Homepage from "./pages/homepage/Homepage";
+import router from "./api/routes";
+import { RouterProvider } from "@tanstack/react-router";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,7 +30,7 @@ persistQueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Homepage />
+      <RouterProvider router={router} />
     </QueryClientProvider>
   );
 }

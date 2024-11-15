@@ -1,40 +1,39 @@
+import { Link } from "@tanstack/react-router";
 import { Pagination } from "../api/types/types";
+import { HomeParams } from "../pages/homepage/Homepage";
 
 interface PageButtonProps {
   pagination: Pagination;
-  page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
 }
-export default function PageButtons({
-  pagination,
-  page,
-  setPage,
-}: PageButtonProps) {
-  const { current_page, has_next_page, last_visible_page } = pagination;
-
-  function handlePrev() {
-    if (page > 1) {
-      setPage(page - 1);
-    }
-  }
-
-  function handleNext() {
-    if (current_page < last_visible_page) {
-      setPage(page + 1);
-    }
-  }
+export default function PageButtons({ pagination }: PageButtonProps) {
+  const { current_page, has_next_page } = pagination;
 
   return (
-    <div>
+    <div className="join">
       {current_page > 1 && (
-        <button className="btn" onClick={handlePrev}>
-          Prev
-        </button>
+        <Link
+          className="join-item btn"
+          to="."
+          search={(prev: HomeParams) => ({
+            ...prev,
+            page: current_page - 1,
+          })}
+        >
+          «
+        </Link>
       )}
+      <button className="join-item btn no-animation">{current_page}</button>
       {has_next_page && (
-        <button className="btn" onClick={handleNext} disabled={!has_next_page}>
-          Next
-        </button>
+        <Link
+          className="join-item btn"
+          to="."
+          search={(prev: HomeParams) => ({
+            ...prev,
+            page: current_page + 1,
+          })}
+        >
+          »
+        </Link>
       )}
     </div>
   );

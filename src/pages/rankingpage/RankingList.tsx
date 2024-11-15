@@ -1,15 +1,15 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import { fetchTopAnime } from "../../api/fetchTopAnime";
+import { fetchTopAnime } from "../../api/fetch/fetchTopAnime";
 import { useState } from "react";
-import { TopAnimeFilter } from "../../api/types/types";
 import AnimeElements from "../../components/AnimeElements";
 import PageButtons from "../../components/PageButtons";
 import ListSkeleton from "../../components/ListSkeleton";
-import RankingFilter from "./RankingFilter";
+import RankingFilterButtons from "./RankingFilterButtons";
+import { RankingParams } from "./RankingPage";
 
-export default function AnimeList() {
-  const [page, setPage] = useState(1);
-  const [filter, setFilter] = useState<TopAnimeFilter | undefined>(undefined);
+export type TopRankingFilters = "bypopularity" | "favorite";
+
+export default function RankingList({ filter, page }: RankingParams) {
   const { data, isLoading, isFetching, error } = useQuery({
     queryKey: ["topAnime", filter, page],
     queryFn: () => fetchTopAnime(filter, undefined, page),
@@ -31,17 +31,15 @@ export default function AnimeList() {
   return (
     <>
       <div>
-        <RankingFilter
-          filter={filter}
-          setFilter={setFilter}
-          setPage={setPage}
-        />
+        <RankingFilterButtons filter={filter} />
         {animeData && (
-          <AnimeElements animeData={animeData} isFetching={isFetching} />
+          <AnimeElements
+            animeData={animeData}
+            isFetching={isFetching}
+            showRank={true}
+          />
         )}
-        {pagination && (
-          <PageButtons pagination={pagination} page={page} setPage={setPage} />
-        )}
+        {pagination && <PageButtons pagination={pagination} />}
       </div>
     </>
   );
