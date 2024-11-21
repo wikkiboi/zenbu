@@ -13,7 +13,6 @@ export const fetchTopAnime = async (
         params: { filter, type, page },
       }
     );
-    console.log("fetch");
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {

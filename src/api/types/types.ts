@@ -32,6 +32,7 @@ export type OrderBy =
   | "members"
   | "favorites";
 
+export type Seasons = "winter" | "spring" | "summer" | "fall";
 export interface SearchParams {
   unapproved?: boolean;
   page?: number;
