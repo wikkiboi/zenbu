@@ -1,8 +1,11 @@
-import { Seasons } from "../../pages/seasonalpage/SeasonalList";
+import { getCurrentDate } from "../../helper/getCurrentDate";
+import { Seasons } from "../types/types";
 
 export const seasonalParams = (search: Record<string, unknown>) => {
+  const { year, season } = getCurrentDate();
   return {
-    year: Number(search?.year),
-    season: search?.season as Seasons,
+    year: search.year ? Number(search.year) : year,
+    season: search.season ? (search.season as Seasons) : season,
+    page: search.page ? Number(search.page) : undefined,
   };
 };

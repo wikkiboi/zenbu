@@ -8,12 +8,17 @@ import SearchPage from "../pages/searchpage/SearchPage";
 import RankingPage from "../pages/rankingpage/RankingPage";
 import SeasonalPage from "../pages/seasonalpage/SeasonalPage";
 import AnimeDetailPage from "../pages/detailspage/AnimeDetailPage";
-import { homeParams } from "./params/homeParams";
-import { searchParams } from "./params/searchParams";
-import { rankingParams } from "./params/rankingParams";
-import { seasonalParams } from "./params/seasonalParams";
+import {
+  homeParams,
+  searchParams,
+  rankingParams,
+  seasonalParams,
+} from "./params";
+import PageLayout from "../layout/PageLayout";
 
-const rootRoute = createRootRoute();
+const rootRoute = createRootRoute({
+  component: PageLayout,
+});
 
 const homeRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -45,7 +50,7 @@ const seasonalRoute = createRoute({
 
 const animeDetailRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/anime/:animeId",
+  path: "/anime/$animeId",
   component: AnimeDetailPage,
 });
 
