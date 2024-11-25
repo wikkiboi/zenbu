@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { TopRankingFilters } from "./RankingList";
 import { formatFilter } from "../../helper/formatFilter";
-
+import arrowIcon from "../../../public/svg/dropdown-arrow.svg";
 interface RankingFilterProps {
   filter: TopRankingFilters | undefined;
 }
@@ -17,8 +17,13 @@ export default function RankingFilterButtons({ filter }: RankingFilterProps) {
     <div className="dropdown dropdown-hover">
       <div className="btn btn-sm">
         {filter ? formatFilter(filter) : "Score"}
+        <img
+          src={arrowIcon}
+          alt="Arrow Icon"
+          className="w-4 font-bold invert"
+        />
       </div>
-      <div className="dropdown-content menu bg-base-100 rounded-box z-[1] p-2">
+      <div className="dropdown-content menu bg-base-300 rounded-box z-[1] p-2">
         {rankingFilters.map((filter) => {
           if (filter === "score") {
             return (
