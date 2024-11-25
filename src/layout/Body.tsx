@@ -5,8 +5,10 @@ interface BodyProps {
 }
 export default function Body({ children }: BodyProps) {
   return (
-    <main className="p-4 min-h-screen relative w-full bg-[#414558]">
+    <main className="p-4 min-h-screen relative w-full bg-neutral">
       {children}
     </main>
   );
 }
+
+// bg-[#414558]
