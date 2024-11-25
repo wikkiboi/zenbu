@@ -14,7 +14,7 @@ const rankingFilters: (TopRankingFilters | "score")[] = [
 
 export default function RankingFilterButtons({ filter }: RankingFilterProps) {
   return (
-    <div className="dropdown dropdown-hover">
+    <div className="dropdown z-10">
       <div className="btn btn-sm">
         {filter ? formatFilter(filter) : "Score"}
         <img

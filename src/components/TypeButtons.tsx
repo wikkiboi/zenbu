@@ -20,15 +20,15 @@ interface TypeButtonProps {
 
 export default function TypeButtons({ type }: TypeButtonProps) {
   return (
-    <div className="dropdown">
-      <div tabIndex={0} className="btn btn-sm gap-1.5">
+    <div className="dropdown z-10">
+      <button tabIndex={0} role="button" className="btn btn-sm gap-1.5">
         {formatType(type)}
         <img
           src={arrowIcon}
           alt="Arrow Icon"
           className="w-4 font-bold invert"
         />
-      </div>
+      </button>
       <div
         tabIndex={0}
         className="dropdown-content menu bg-base-300 rounded-box z-[1] p-2"

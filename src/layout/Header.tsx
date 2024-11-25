@@ -5,6 +5,7 @@ import leafIcon from "../../public/svg/maple-leaf.svg";
 import homeIcon from "../../public/svg/home.svg";
 import rankingIcon from "../../public/svg/ranking.svg";
 import searchIcon from "../../public/svg/magnifying-glass.svg";
+import dropdownIcon from "../../public/svg/dropdown-icon.svg";
 
 // bg-[#7A82A]
 
@@ -57,7 +58,11 @@ export default function Header() {
         </div>
         <div className="md:hidden dropdown dropdown-bottom dropdown-end">
           <label tabIndex={0} className="btn btn-ghost">
-            Menu
+            <img
+              src={dropdownIcon}
+              alt="Dropdown Icon"
+              className="w-3 invert"
+            />
           </label>
           <ul
             tabIndex={0}
