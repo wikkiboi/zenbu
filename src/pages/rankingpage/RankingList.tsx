@@ -1,11 +1,13 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import { fetchTopAnime } from "../../api/fetch/fetchTopAnime";
-import { useState } from "react";
+import { fetchTopAnime } from "../../api/fetch";
 import AnimeElements from "../../components/AnimeElements";
 import PageButtons from "../../components/PageButtons";
-import ListSkeleton from "../../components/ListSkeleton";
 import RankingFilterButtons from "./RankingFilterButtons";
 import { RankingParams } from "./RankingPage";
+import ListLayout from "../../layout/ListLayout";
+import ButtonRow from "../../layout/ButtonRow";
+import LoadingBar from "../../components/LoadingBar";
+import ButtonRowSkeleton from "../../skeleton/ButtonRowSkeleton";
 
 export type TopRankingFilters = "bypopularity" | "favorite";
 
@@ -21,7 +23,6 @@ export default function RankingList({ filter, page }: RankingParams) {
     staleTime: 60 * 2000,
   });
 
-  if (isLoading) return <ListSkeleton />;
   if (error instanceof Error && !isFetching)
     return <div>Error: {error.message}</div>;
 
@@ -30,16 +31,30 @@ export default function RankingList({ filter, page }: RankingParams) {
 
   return (
     <>
-      <div>
-        <RankingFilterButtons filter={filter} />
-        {animeData && (
+      <LoadingBar isLoading={isLoading} isFetching={isFetching} />
+      <div className="flex flex-col">
+        {pagination ? (
+          <ButtonRow>
+            <RankingFilterButtons filter={filter} />
+            {pagination && <PageButtons pagination={pagination} />}
+          </ButtonRow>
+        ) : (
+          <ButtonRowSkeleton />
+        )}
+        <ListLayout isFetching={isFetching}>
           <AnimeElements
             animeData={animeData}
-            isFetching={isFetching}
+            isLoading={isLoading}
             showRank={true}
           />
+        </ListLayout>
+        {pagination ? (
+          <ButtonRow>
+            {pagination && <PageButtons pagination={pagination} />}
+          </ButtonRow>
+        ) : (
+          <ButtonRowSkeleton />
         )}
-        {pagination && <PageButtons pagination={pagination} />}
       </div>
     </>
   );

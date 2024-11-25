@@ -1,4 +1,4 @@
-import { AnimeType } from "../api/types/types";
+import { AnimeType } from "../api/types";
 
 export const formatType = (type: AnimeType): string => {
   if (["tv", "ova", "ona", "cm", "pv"].includes(type)) {

@@ -9,11 +9,11 @@ export type RankingParams = {
 const rankingRouteApi = getRouteApi("/ranking");
 
 export default function RankingPage() {
-  const { filter, page } = rankingRouteApi.useSearch();
+  const { filter, page }: RankingParams = rankingRouteApi.useSearch();
 
   return (
-    <div>
+    <>
       <RankingList filter={filter} page={page} />
-    </div>
+    </>
   );
 }

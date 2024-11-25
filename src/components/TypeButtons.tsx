@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { AnimeType } from "../api/types/types";
+import { AnimeType } from "../api/types";
 import { formatType } from "../helper/formatType";
 
 const animeTypes: AnimeType[] = [
@@ -21,15 +21,20 @@ interface TypeButtonProps {
 export default function TypeButtons({ type }: TypeButtonProps) {
   return (
     <div className="dropdown">
-      <div tabIndex={0} className="btn">
+      <div tabIndex={0} className="btn btn-sm ">
         {formatType(type)}
       </div>
       <div
         tabIndex={0}
-        className="dropdown-content menu bg-base-100 rounded-box z-[1] w-24 p-2"
+        className="dropdown-content menu bg-base-100 rounded-box z-[1] p-2"
       >
         {animeTypes.map((type) => (
-          <Link to="." className="btn" search={{ type, page: 1 }}>
+          <Link
+            to="."
+            key={type}
+            className="btn btn-ghost"
+            search={{ type, page: 1 }}
+          >
             {formatType(type)}
           </Link>
         ))}

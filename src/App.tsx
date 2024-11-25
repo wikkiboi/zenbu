@@ -15,8 +15,6 @@ const queryClient = new QueryClient({
   },
 });
 
-queryClient.clear();
-
 const persister = createSyncStoragePersister({
   storage: window.localStorage,
   retry: removeOldestQuery,

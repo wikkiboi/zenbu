@@ -1,39 +1,56 @@
-import { Link } from "@tanstack/react-router";
-import { Pagination } from "../api/types/types";
-import { HomeParams } from "../pages/homepage/Homepage";
+import { Pagination } from "../api/types";
+import PageLink from "./PageLink";
 
 interface PageButtonProps {
   pagination: Pagination;
 }
 export default function PageButtons({ pagination }: PageButtonProps) {
-  const { current_page, has_next_page } = pagination;
+  const { current_page, last_visible_page } = pagination;
 
   return (
-    <div className="join">
-      {current_page > 1 && (
-        <Link
-          className="join-item btn"
-          to="."
-          search={(prev: HomeParams) => ({
-            ...prev,
-            page: current_page - 1,
-          })}
-        >
-          «
-        </Link>
-      )}
-      <button className="join-item btn no-animation">{current_page}</button>
-      {has_next_page && (
-        <Link
-          className="join-item btn"
-          to="."
-          search={(prev: HomeParams) => ({
-            ...prev,
-            page: current_page + 1,
-          })}
-        >
-          »
-        </Link>
+    <div className="flex grow flex-row justify-center mx-auto gap-3">
+      {pagination && (
+        <>
+          {current_page >= 3 && (
+            <div className="tabs tabs-boxed tabs-sm rounded-lg bg-[#1f202a] items-center">
+              <PageLink
+                page={1}
+                lastPage={last_visible_page}
+                currentPage={current_page}
+              />
+            </div>
+          )}
+
+          <div
+            className="bg-[#1f202a] flex tabs tabs-boxed tabs-sm items-center gap-1"
+            role="tablist"
+          >
+            <PageLink
+              page={current_page - 1}
+              lastPage={last_visible_page}
+              currentPage={current_page}
+            />
+            <PageLink
+              page={current_page}
+              lastPage={last_visible_page}
+              currentPage={current_page}
+            />
+            <PageLink
+              page={current_page + 1}
+              lastPage={last_visible_page}
+              currentPage={current_page}
+            />
+          </div>
+          {current_page <= last_visible_page - 2 && (
+            <div className="tabs tabs-boxed tabs-sm rounded-lg bg-[#1f202a] items-center">
+              <PageLink
+                page={last_visible_page}
+                lastPage={last_visible_page}
+                currentPage={current_page}
+              />
+            </div>
+          )}
+        </>
       )}
     </div>
   );

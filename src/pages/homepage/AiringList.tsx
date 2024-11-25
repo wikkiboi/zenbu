@@ -1,10 +1,13 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import { fetchTopAnime } from "../../api/fetch/fetchTopAnime";
+import { fetchTopAnime } from "../../api/fetch";
 import AnimeElements from "../../components/AnimeElements";
 import PageButtons from "../../components/PageButtons";
-import ListSkeleton from "../../components/ListSkeleton";
 import TypeButtons from "../../components/TypeButtons";
 import { HomeParams } from "./Homepage";
+import ButtonRow from "../../layout/ButtonRow";
+import ListLayout from "../../layout/ListLayout";
+import LoadingBar from "../../components/LoadingBar";
+import ButtonRowSkeleton from "../../skeleton/ButtonRowSkeleton";
 
 export default function AiringList({ page, type }: HomeParams) {
   const { data, isLoading, isFetching, error } = useQuery({
@@ -18,7 +21,6 @@ export default function AiringList({ page, type }: HomeParams) {
     staleTime: 60 * 2000,
   });
 
-  if (isLoading) return <ListSkeleton />;
   if (error instanceof Error && !isFetching)
     return <div>Error: {error.message}</div>;
 
@@ -27,12 +29,30 @@ export default function AiringList({ page, type }: HomeParams) {
 
   return (
     <>
-      <div>
-        <TypeButtons type={type || "tv"} />
-        {animeData && (
-          <AnimeElements animeData={animeData} isFetching={isFetching} />
+      <LoadingBar isLoading={isLoading} isFetching={isFetching} />
+      <div className="flex flex-col">
+        {pagination ? (
+          <ButtonRow>
+            <TypeButtons type={type || "tv"} />
+            {pagination && <PageButtons pagination={pagination} />}
+          </ButtonRow>
+        ) : (
+          <ButtonRowSkeleton />
         )}
-        {pagination && <PageButtons pagination={pagination} />}
+        <ListLayout isFetching={isFetching}>
+          <AnimeElements
+            animeData={animeData}
+            isLoading={isLoading}
+            elementCount={pagination?.items.count}
+          />
+        </ListLayout>
+        {pagination ? (
+          <ButtonRow>
+            {pagination && <PageButtons pagination={pagination} />}
+          </ButtonRow>
+        ) : (
+          <ButtonRowSkeleton />
+        )}
       </div>
     </>
   );
