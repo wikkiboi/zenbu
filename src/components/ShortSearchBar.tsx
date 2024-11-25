@@ -7,7 +7,7 @@ import ShortSearchResults from "./ShortSearchResults";
 export default function ShortSearchBar() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [debouncedQuery] = useDebounce(searchQuery, 1000);
-  const { data, isLoading, error, isFetching } = useQuery({
+  const { data, error, isFetching } = useQuery({
     queryKey: ["searchResults", debouncedQuery],
     queryFn: () => fetchSearchAnime({ q: debouncedQuery, limit: 10 }),
     placeholderData: keepPreviousData,
