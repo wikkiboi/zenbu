@@ -39,7 +39,7 @@ export default function AiringList({ page, type }: HomeParams) {
         ) : (
           <ButtonRowSkeleton />
         )}
-        <ListLayout isFetching={isFetching}>
+        <ListLayout isFetching={isFetching} key={pagination?.current_page}>
           <AnimeElements
             animeData={animeData}
             isLoading={isLoading}

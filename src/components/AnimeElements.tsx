@@ -36,7 +36,7 @@ export default function AnimeElements({
         uniqueData.map((anime: Anime) => {
           return (
             <div key={anime.mal_id}>
-              <Link
+              <button
                 className="btn-ghost transition-all ease-in-out duration-300 flex flex-col py-3 rounded will-change-auto mx-auto w-11/12"
                 onClick={() => {
                   const dialog = document.getElementById(
@@ -59,7 +59,7 @@ export default function AnimeElements({
                 </h2>
                 <div className="mx-auto">
                   {anime.genres.slice(0, 3).map((genre) => (
-                    <button
+                    <Link
                       className="btn btn-xs border border-gray-500 text-[8px] mx-[1px] rounded-xl"
                       onClick={(event) => {
                         event.stopPropagation();
@@ -68,13 +68,14 @@ export default function AnimeElements({
                           to: `/search?genres=${genre.name}`,
                         });
                       }}
+                      to={`/search?genres=${genre.name}`}
                       key={nanoid()}
                     >
                       {genre.name.charAt(0).toUpperCase() + genre.name.slice(1)}
-                    </button>
+                    </Link>
                   ))}
                 </div>
-              </Link>
+              </button>
               <dialog id={`anime-modal-${anime.mal_id}`} className="modal">
                 <AnimeModal anime={anime} />
                 <form method="dialog" className="modal-backdrop">
