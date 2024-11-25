@@ -29,7 +29,7 @@ export default function ShortSearchBar() {
     <div className="modal-box pb-2 bg-neutral">
       <h1 className="font-bold mb-3">Search</h1>
       <form method="dialog" className="modal-backdrop">
-        <button className="btn btn-sm btn-circle absolute right-2 top-2">
+        <button className="btn btn-sm btn-circle absolute right-2 top-2 bg-neutral border-none shadow-none">
           ✕
         </button>
       </form>

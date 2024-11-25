@@ -3,6 +3,7 @@ import ImageWithLoader from "./ImageWithLoader";
 import ListSkeleton from "../skeleton/ListSkeleton";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { nanoid } from "nanoid";
+import AnimeModal from "./AnimeModal";
 
 interface AnimeElementProps {
   animeData?: Anime[];
@@ -34,40 +35,53 @@ export default function AnimeElements({
         !isLoading &&
         uniqueData.map((anime: Anime) => {
           return (
-            <Link
-              className="btn-ghost transition-all ease-in-out duration-300 flex flex-col p-3 rounded will-change-transform mx-auto w-11/12"
-              key={anime.mal_id}
-              title={anime.title}
-              to={`/anime/${anime.mal_id}`}
-            >
-              <ImageWithLoader
+            <div key={anime.mal_id}>
+              <Link
+                className="btn-ghost transition-all ease-in-out duration-300 flex flex-col py-3 rounded will-change-auto mx-auto w-11/12"
+                onClick={() => {
+                  const dialog = document.getElementById(
+                    `anime-modal-${anime.mal_id}`
+                  ) as HTMLDialogElement;
+                  dialog.showModal();
+                }}
                 key={anime.mal_id}
-                src={anime.images.webp.large_image_url}
-                alt={anime.title}
-                showRank={showRank}
-                rank={showRank ? anime.rank : undefined}
-              />
-              <h2 className="truncate max-w-40 text-center font-semibold text-md mx-auto">
-                {anime.title}
-              </h2>
-              <div className="mx-auto">
-                {anime.genres.slice(0, 3).map((genre) => (
-                  <button
-                    className="btn btn-xs border border-gray-500 text-[8px] mx-[1px] rounded-xl"
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      event.preventDefault();
-                      navigate({
-                        to: `/search?genres=${genre.name}`,
-                      });
-                    }}
-                    key={nanoid()}
-                  >
-                    {genre.name.charAt(0).toUpperCase() + genre.name.slice(1)}
-                  </button>
-                ))}
-              </div>
-            </Link>
+                title={anime.title}
+              >
+                <ImageWithLoader
+                  key={anime.mal_id}
+                  src={anime.images.webp.large_image_url}
+                  alt={anime.title}
+                  showRank={showRank}
+                  rank={showRank ? anime.rank : undefined}
+                />
+                <h2 className="truncate max-w-40 text-center font-semibold text-md mx-auto">
+                  {anime.title}
+                </h2>
+                <div className="mx-auto">
+                  {anime.genres.slice(0, 3).map((genre) => (
+                    <button
+                      className="btn btn-xs border border-gray-500 text-[8px] mx-[1px] rounded-xl"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        event.preventDefault();
+                        navigate({
+                          to: `/search?genres=${genre.name}`,
+                        });
+                      }}
+                      key={nanoid()}
+                    >
+                      {genre.name.charAt(0).toUpperCase() + genre.name.slice(1)}
+                    </button>
+                  ))}
+                </div>
+              </Link>
+              <dialog id={`anime-modal-${anime.mal_id}`} className="modal">
+                <AnimeModal anime={anime} />
+                <form method="dialog" className="modal-backdrop">
+                  <button>close</button>
+                </form>
+              </dialog>
+            </div>
           );
         })}
     </>

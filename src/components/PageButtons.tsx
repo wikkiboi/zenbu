@@ -8,7 +8,7 @@ export default function PageButtons({ pagination }: PageButtonProps) {
   const { current_page, last_visible_page } = pagination;
 
   return (
-    <div className="flex grow flex-row justify-center mx-auto gap-3">
+    <div className="flex grow flex-row justify-center gap-3">
       {pagination && (
         <>
           {current_page >= 3 && (
