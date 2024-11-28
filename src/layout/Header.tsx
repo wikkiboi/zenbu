@@ -1,11 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import ShortSearchBar from "../components/ShortSearchBar";
 import NavLink from "./NavLink";
-import leafIcon from "../../public/svg/maple-leaf.svg";
-import homeIcon from "../../public/svg/home.svg";
-import rankingIcon from "../../public/svg/ranking.svg";
-import searchIcon from "../../public/svg/magnifying-glass.svg";
-import dropdownIcon from "../../public/svg/dropdown-icon.svg";
+import leafIcon from "../svg/maple-leaf.svg";
+import homeIcon from "../svg/home.svg";
+import rankingIcon from "../svg/ranking.svg";
+import searchIcon from "../svg/magnifying-glass.svg";
+import dropdownIcon from "../svg/dropdown-icon.svg";
 
 // bg-[#7A82A]
 
@@ -32,12 +32,7 @@ export default function Header() {
           />
           Search
         </button>
-        <dialog id="search-modal" className="modal">
-          <ShortSearchBar />
-          <form method="dialog" className="modal-backdrop">
-            <button>close</button>
-          </form>
-        </dialog>
+        <ShortSearchBar />
         <div className="hidden md:flex">
           <NavLink path="/">
             <img src={homeIcon} alt="Home Icon" className="w-3 pt-0.5 invert" />

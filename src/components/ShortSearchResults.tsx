@@ -3,12 +3,10 @@ import { Anime } from "../api/types";
 
 interface ShortSearchResultsProps {
   searchData?: Anime[];
-  searchQuery: string;
   debouncedQuery: string;
 }
 export default function ShortSearchResults({
   searchData,
-  searchQuery,
   debouncedQuery,
 }: ShortSearchResultsProps) {
   if (debouncedQuery === "") searchData = [];
@@ -16,20 +14,30 @@ export default function ShortSearchResults({
     <>
       {searchData && searchData.length > 1 && (
         <div className="bg-base-100 rounded-xl p-4">
-          {searchData.map((anime) => (
-            <div key={anime.mal_id}>{anime.title}</div>
-          ))}
+          {searchData.map((search) => {
+            let year;
+            if (search.year === undefined) {
+              year = search.aired.from ? search.aired.from.slice(0, 4) : "";
+            } else {
+              year = search.year;
+            }
+
+            return (
+              <div className="result-container" key={search.mal_id}>
+                <Link to={`/anime/${search.mal_id}`} className="result-card">
+                  <div className="result-image">
+                    <img src={search.images.webp.image_url} />
+                  </div>
+                  <div className="result-info">
+                    <h1>{search.title_english || search.title}</h1>
+                    <h2>{`(${search.type}, ${year})`}</h2>
+                  </div>
+                </Link>
+              </div>
+            );
+          })}
         </div>
       )}
-      <div className="ml-auto mr-1">
-        <Link
-          className="link link-hover text-xs opacity-40"
-          to="/search"
-          search={() => ({ q: searchQuery })}
-        >
-          Advanced Search Filters »
-        </Link>
-      </div>
     </>
   );
 }

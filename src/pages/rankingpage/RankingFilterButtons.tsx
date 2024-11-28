@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { TopRankingFilters } from "./RankingList";
 import { formatFilter } from "../../helper/formatFilter";
-import arrowIcon from "../../../public/svg/dropdown-arrow.svg";
+import arrowIcon from "../../svg/dropdown-arrow.svg";
+import filterIcon from "../../svg/filter-button.svg";
 interface RankingFilterProps {
   filter: TopRankingFilters | undefined;
 }
@@ -15,13 +16,12 @@ const rankingFilters: (TopRankingFilters | "score")[] = [
 export default function RankingFilterButtons({ filter }: RankingFilterProps) {
   return (
     <div className="dropdown z-10">
-      <div className="btn btn-sm">
+      <div tabIndex={0} className="btn btn-sm hidden md:flex">
         {filter ? formatFilter(filter) : "Score"}
-        <img
-          src={arrowIcon}
-          alt="Arrow Icon"
-          className="w-4 font-bold invert"
-        />
+        <img src={arrowIcon} alt="Arrow Icon" className="w-4 invert" />
+      </div>
+      <div tabIndex={0} className="btn btn-sm rounded-xl md:hidden p-2">
+        <img src={filterIcon} alt="Filter Icon" className="w-4 invert" />
       </div>
       <div className="dropdown-content menu bg-base-300 rounded-box z-[1] p-2">
         {rankingFilters.map((filter) => {

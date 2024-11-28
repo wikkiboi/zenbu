@@ -78,9 +78,6 @@ export default function AnimeElements({
               </button>
               <dialog id={`anime-modal-${anime.mal_id}`} className="modal">
                 <AnimeModal anime={anime} />
-                <form method="dialog" className="modal-backdrop">
-                  <button>close</button>
-                </form>
               </dialog>
             </div>
           );
