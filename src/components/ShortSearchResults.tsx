@@ -24,7 +24,10 @@ export default function ShortSearchResults({
 
             return (
               <div className="flex" key={search.mal_id}>
-                <Link to={`/anime/${search.mal_id}`} className="flex mb-2">
+                <Link
+                  to={`/anime/${search.mal_id}`}
+                  className="flex btn-ghost rounded p-1 transition duration-200 ease-in-out w-full"
+                >
                   <img
                     src={search.images.webp.image_url}
                     className="w-8 aspect-[7/10] object-cover mr-2"
