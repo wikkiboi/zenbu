@@ -31,7 +31,7 @@ export default function ImageWithLoader({
   return (
     <>
       {!isLoaded && <ImageSkeleton />}
-      <div className="relative w-44 mx-auto">
+      <div className="relative md:w-44 w-28 mx-auto">
         <img
           className={`${
             isLoaded ? "block" : "hidden"
@@ -42,7 +42,7 @@ export default function ImageWithLoader({
           onLoad={handleImageLoad}
         />
         {showRank && (
-          <div className="absolute top-1 left-1 bg-opacity-50 text-white btn btn-circle btn-sm">
+          <div className="absolute top-1 left-1 bg-opacity-50 text-white btn btn-circle md:btn-sm btn-xs">
             <h2 className="text-md font-bold m-auto">{rank ? rank : "N/A"}</h2>
           </div>
         )}

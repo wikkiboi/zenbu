@@ -54,13 +54,13 @@ export default function AnimeElements({
                   showRank={showRank}
                   rank={showRank ? anime.rank : undefined}
                 />
-                <h2 className="truncate max-w-40 text-center font-semibold text-md mx-auto">
+                <h2 className="truncate md:max-w-40 max-w-28 text-center font-semibold md:text-md text-sm mx-auto mb-1">
                   {anime.title}
                 </h2>
-                <div className="mx-auto">
+                <div className="mx-auto flex gap-0.5">
                   {anime.genres.slice(0, 3).map((genre) => (
                     <Link
-                      className="btn btn-xs border border-gray-500 text-[8px] mx-[1px] rounded-xl"
+                      className="btn h-4 min-h-4  md:btn-xs border border-gray-500 md:text-[8px] text-[6px] md:px-2 px-1 rounded-xl"
                       onClick={(event) => {
                         event.stopPropagation();
                         event.preventDefault();
