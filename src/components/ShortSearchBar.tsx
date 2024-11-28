@@ -37,7 +37,7 @@ export default function ShortSearchBar() {
         <h1 className="font-bold mb-3">Search</h1>
         <form method="dialog" className="modal-backdrop">
           <button
-            className="btn btn-sm btn-circle absolute right-2 top-2 bg-neutral border-none shadow-none"
+            className="btn btn-sm btn-circle absolute right-2 top-2 bg-transparent border-none shadow-none"
             onClick={closeModal}
           >
             ✕

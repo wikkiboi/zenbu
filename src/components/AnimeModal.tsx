@@ -9,11 +9,11 @@ export default function AnimeModal({ anime }: AnimeModalProps) {
     <>
       <div className="modal-box bg-neutral p-4">
         <form method="dialog" className="modal-backdrop">
-          <button className="btn btn-sm btn-circle absolute right-2 top-2 bg-neutral border-none shadow-none">
+          <button className="btn btn-sm btn-circle absolute right-2 top-2 bg-transparent border-none shadow-none">
             ✕
           </button>
         </form>
-        <h1 className="font-extrabold text-lg mb-1">{anime.title}</h1>
+        <h1 className="font-extrabold text-lg mb-1 z-1">{anime.title}</h1>
         <div className="bg-base-100 flex rounded-lg p-3 gap-2 mb-1">
           <img
             src={anime.images.webp.large_image_url}
