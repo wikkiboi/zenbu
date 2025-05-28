@@ -15,7 +15,7 @@ const rankingFilters: (TopRankingFilters | "score")[] = [
 
 export default function RankingFilterButtons({ filter }: RankingFilterProps) {
   return (
-    <div className="dropdown z-10">
+    <div className="dropdown z-10 ml-3">
       <div tabIndex={0} className="btn btn-sm hidden md:flex">
         {filter ? formatFilter(filter) : "Score"}
         <img src={arrowIcon} alt="Arrow Icon" className="w-4 invert" />
@@ -23,7 +23,7 @@ export default function RankingFilterButtons({ filter }: RankingFilterProps) {
       <div tabIndex={0} className="btn btn-sm rounded-xl md:hidden p-2">
         <img src={filterIcon} alt="Filter Icon" className="w-4 invert" />
       </div>
-      <div className="dropdown-content menu bg-base-300 rounded-box z-[1] p-2">
+      <div className="dropdown-content menu bg-base-300 rounded-box z-[1] p-2 mt-1 shadow-md">
         {rankingFilters.map((filter) => {
           if (filter === "score") {
             return (

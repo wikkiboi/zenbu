@@ -24,10 +24,6 @@ export default function ImageWithLoader({
     }
   }, [src]);
 
-  const handleImageLoad = () => {
-    setIsLoaded(true);
-  };
-
   return (
     <>
       {!isLoaded && <ImageSkeleton />}
@@ -35,11 +31,10 @@ export default function ImageWithLoader({
         <img
           className={`${
             isLoaded ? "block" : "hidden"
-          } object-cover aspect-[7/10] mb-2 rounded`}
+          } object-cover aspect-[7/10] mb-2 rounded max-h-[250px]`}
           src={src}
           alt={`Image of ${alt}`}
-          loading="lazy"
-          onLoad={handleImageLoad}
+          onLoad={() => setIsLoaded(true)}
         />
         {showRank && (
           <div className="absolute top-1 left-1 bg-opacity-50 text-white btn btn-circle md:btn-sm btn-xs">

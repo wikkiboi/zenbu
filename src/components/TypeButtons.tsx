@@ -21,7 +21,7 @@ interface TypeButtonProps {
 
 export default function TypeButtons({ type }: TypeButtonProps) {
   return (
-    <div className="dropdown z-10">
+    <div className="dropdown z-10 ml-3">
       <button
         tabIndex={0}
         role="button"
@@ -35,7 +35,7 @@ export default function TypeButtons({ type }: TypeButtonProps) {
       </div>
       <div
         tabIndex={0}
-        className="dropdown-content menu bg-base-300 rounded-box z-[1] p-2"
+        className="dropdown-content menu bg-base-300 rounded-box z-[1] p-2 mt-1 shadow-md"
       >
         {animeTypes.map((type) => (
           <Link

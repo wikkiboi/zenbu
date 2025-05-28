@@ -16,7 +16,15 @@ export default function RankingList({ filter, page }: RankingParams) {
     queryKey: ["topAnime", filter, page],
     queryFn: () => fetchTopAnime(filter, undefined, page),
     placeholderData: keepPreviousData,
-    select: (response) => response,
+    select: (response) => {
+      if (!response || !Array.isArray(response.data)) return response;
+      const sortedData = [...response.data].sort((a, b) => {
+        if (!a.rank) return 1;
+        if (!b.rank) return -1;
+        return a.rank - b.rank;
+      });
+      return { ...response, data: sortedData };
+    },
     enabled: true,
     retryDelay: 1500,
     refetchOnReconnect: true,

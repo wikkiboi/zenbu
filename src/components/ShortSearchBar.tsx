@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useState, useRef } from "react";
 import { fetchSearchAnime } from "../api/fetch";
 import { useDebounce } from "use-debounce";
@@ -8,6 +8,7 @@ import { Link } from "@tanstack/react-router";
 export default function ShortSearchBar() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [debouncedQuery] = useDebounce(searchQuery, 1000);
+  const queryClient = useQueryClient();
 
   const modalRef = useRef<HTMLDialogElement | null>(null);
 
@@ -28,6 +29,7 @@ export default function ShortSearchBar() {
 
   function closeModal() {
     setSearchQuery("");
+    queryClient.removeQueries({ queryKey: ["searchResults"] });
     modalRef.current?.close();
   }
 

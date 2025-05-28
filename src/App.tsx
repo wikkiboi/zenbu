@@ -10,7 +10,7 @@ import { RouterProvider } from "@tanstack/react-router";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      gcTime: 2000 * 60,
+      gcTime: 1000 * 10,
     },
   },
 });

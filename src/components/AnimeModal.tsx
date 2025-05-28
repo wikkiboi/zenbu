@@ -38,7 +38,7 @@ export default function AnimeModal({ anime }: AnimeModalProps) {
                 {anime.year}
               </p>
             )}
-            <p>{anime.source}</p>
+            <p>Source: {anime.source}</p>
           </div>
         </div>
         <div className="bg-base-100 rounded-lg py-2 px-4">

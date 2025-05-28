@@ -35,7 +35,7 @@ export default function AnimeElements({
         !isLoading &&
         uniqueData.map((anime: Anime) => {
           return (
-            <div key={anime.mal_id}>
+            <div key={anime.mal_id} className="my-auto">
               <button
                 className="btn-ghost transition-all ease-in-out duration-300 flex flex-col py-3 rounded will-change-auto mx-auto w-11/12"
                 onClick={() => {

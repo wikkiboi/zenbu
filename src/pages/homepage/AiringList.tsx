@@ -8,6 +8,7 @@ import ButtonRow from "../../layout/ButtonRow";
 import ListLayout from "../../layout/ListLayout";
 import LoadingBar from "../../components/LoadingBar";
 import ButtonRowSkeleton from "../../skeleton/ButtonRowSkeleton";
+import { toast } from "sonner";
 
 export default function AiringList({ page, type }: HomeParams) {
   const { data, isLoading, isFetching, error } = useQuery({
@@ -21,8 +22,9 @@ export default function AiringList({ page, type }: HomeParams) {
     staleTime: 60 * 2000,
   });
 
-  if (error instanceof Error && !isFetching)
-    return <div>Error: {error.message}</div>;
+  if (error instanceof Error && !isFetching) {
+    toast.error("Error fetching data from API");
+  }
 
   const pagination = data?.pagination;
   const animeData = data?.data;
