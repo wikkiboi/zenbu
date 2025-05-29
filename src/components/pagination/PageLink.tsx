@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { HomeParams } from "../pages/homepage/Homepage";
-import { scrollToTop } from "../helper";
+import { HomeParams } from "../../pages/homepage/Homepage";
+import { scrollToTop } from "../../helper";
 
 interface PageLinkProps {
   page: number;

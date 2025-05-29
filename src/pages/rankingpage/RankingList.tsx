@@ -1,7 +1,7 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { fetchTopAnime } from "../../api/fetch";
 import AnimeElements from "../../components/AnimeElements";
-import PageButtons from "../../components/PageButtons";
+import PageButtons from "../../components/pagination/PageButtons";
 import RankingFilterButtons from "./RankingFilterButtons";
 import { RankingParams } from "./RankingPage";
 import ListLayout from "../../layout/ListLayout";

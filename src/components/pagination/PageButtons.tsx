@@ -1,4 +1,4 @@
-import { Pagination } from "../api/types";
+import { Pagination } from "@/api/types";
 import PageLink from "./PageLink";
 
 interface PageButtonProps {

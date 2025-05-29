@@ -1,20 +1,36 @@
+import { Link } from "@tanstack/react-router";
 import { Anime } from "../api/types";
+import { useState } from "react";
+import { Link as LinkIcon } from "lucide-react";
 
 interface AnimeModalProps {
   anime: Anime;
 }
 
 export default function AnimeModal({ anime }: AnimeModalProps) {
+  const [expandedSynopsis, setExpandedSynopsis] = useState(false);
+  const synopsis = anime.synopsis || "No synopsis available";
+
   return (
     <>
       <div className="modal-box bg-neutral p-4">
         <form method="dialog" className="modal-backdrop">
-          <button className="btn btn-sm btn-circle absolute right-2 top-2 bg-transparent border-none shadow-none">
+          <button
+            className="btn btn-sm btn-circle absolute right-2 top-2 bg-transparent border-none shadow-none"
+            onClick={() => setExpandedSynopsis(false)}
+          >
             ✕
           </button>
         </form>
-        <h1 className="font-extrabold text-lg mb-1 z-1">{anime.title}</h1>
-        <div className="bg-base-100 flex rounded-lg p-3 gap-2 mb-1">
+
+        <Link
+          to={`/anime/${anime.mal_id}`}
+          className="flex font-extrabold text-lg hover:underline ml-1 z-1"
+        >
+          {anime.title}
+          <LinkIcon className="size-3.5 my-auto ml-1" />
+        </Link>
+        <div className="bg-base-100 flex rounded-lg p-3 gap-2 my-1">
           <img
             src={anime.images.webp.large_image_url}
             alt={anime.title}
@@ -44,11 +60,31 @@ export default function AnimeModal({ anime }: AnimeModalProps) {
         </div>
         <div className="bg-base-100 rounded-lg py-2 px-4">
           <h2 className="font-bold text-lg">Synopsis</h2>
-          <p>{anime.synopsis}</p>
+          <p className={`${!expandedSynopsis ? "line-clamp-5" : ""}`}>
+            {synopsis}
+          </p>
+          <button
+            onClick={() => setExpandedSynopsis(!expandedSynopsis)}
+            className="mt-1 text-primary underline text-sm"
+          >
+            {expandedSynopsis ? "Show less" : "Read more"}
+          </button>
+        </div>
+        <div className="mt-3 text-right">
+          <Link
+            to={`/anime/${anime.mal_id}`}
+            className="btn btn-sm btn-primary"
+          >
+            View Full Details
+          </Link>
         </div>
       </div>
       <form method="dialog" className="modal-backdrop">
-        <button className="cursor-default" aria-hidden="true">
+        <button
+          className="cursor-default"
+          aria-hidden="true"
+          onClick={() => setExpandedSynopsis(false)}
+        >
           close
         </button>
       </form>

@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import ShortSearchBar from "../components/ShortSearchBar";
+import ShortSearchBar from "../components/search/ShortSearchBar";
 import NavLink from "./NavLink";
 import leafIcon from "../svg/maple-leaf.svg";
 import homeIcon from "../svg/home.svg";

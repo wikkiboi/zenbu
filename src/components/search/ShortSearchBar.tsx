@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useState, useRef, useEffect } from "react";
-import { fetchSearchAnime } from "../api/fetch";
+import { fetchSearchAnime } from "../../api/fetch";
 import { useDebounce } from "use-debounce";
 import ShortSearchResults from "./ShortSearchResults";
 import { Link } from "@tanstack/react-router";
