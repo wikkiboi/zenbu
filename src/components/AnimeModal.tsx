@@ -18,7 +18,7 @@ export default function AnimeModal({ anime }: AnimeModalProps) {
           <img
             src={anime.images.webp.large_image_url}
             alt={anime.title}
-            className="w-1/3 rounded object-fit aspect-[7/10]"
+            className="w-1/3 rounded object-cover aspect-[7/10] max-h-[250px]"
           />
           <div className="">
             <p>Score: {anime.score || "N/A"}</p>
@@ -34,6 +34,7 @@ export default function AnimeModal({ anime }: AnimeModalProps) {
             <p>Members: {anime.members.toLocaleString()}</p>
             {anime.season && anime.year && (
               <p>
+                First Aired:{" "}
                 {anime.season.charAt(0).toUpperCase() + anime.season.slice(1)}{" "}
                 {anime.year}
               </p>

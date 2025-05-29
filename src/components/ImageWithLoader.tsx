@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
-import ImageSkeleton from "../skeleton/ImageSkeleton";
 
 interface ImageWithLoaderProps {
   src: string;
   alt: string;
   showRank: boolean;
   rank?: number;
+}
+
+function ImageSkeleton() {
+  return (
+    <div className="skeleton md:w-44 w-28 aspect-[7/10] mx-auto mb-2"></div>
+  );
 }
 
 export default function ImageWithLoader({
@@ -31,7 +36,7 @@ export default function ImageWithLoader({
         <img
           className={`${
             isLoaded ? "block" : "hidden"
-          } object-cover aspect-[7/10] mb-2 rounded max-h-[250px]`}
+          } object-cover aspect-[7/10] mb-2 rounded max-h-[240px]`}
           src={src}
           alt={`Image of ${alt}`}
           onLoad={() => setIsLoaded(true)}

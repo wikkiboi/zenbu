@@ -1,15 +1,28 @@
 import { Anime } from "../api/types";
 import ImageWithLoader from "./ImageWithLoader";
-import ListSkeleton from "../skeleton/ListSkeleton";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { nanoid } from "nanoid";
 import AnimeModal from "./AnimeModal";
-
+import { AnimatePresence, motion } from "framer-motion";
 interface AnimeElementProps {
   animeData?: Anime[];
   isLoading: boolean;
   elementCount?: number;
   showRank?: boolean;
+}
+
+function ListSkeleton() {
+  return (
+    <div>
+      <div className="skeleton mx-auto my-4 mb-2 md:w-44 w-28 aspect-[7/10]"></div>
+      <div className="skeleton mx-auto w-32 h-3"></div>
+      <div className="flex gap-2 w-24 mx-auto mt-2">
+        <div className="skeleton mx-auto w-8 h-4"></div>
+        <div className="skeleton mx-auto w-8 h-4"></div>
+        <div className="skeleton mx-auto w-8 h-4"></div>
+      </div>
+    </div>
+  );
 }
 
 export default function AnimeElements({
@@ -26,7 +39,7 @@ export default function AnimeElements({
   );
 
   return (
-    <>
+    <AnimatePresence mode="wait">
       {!uniqueData &&
         Array.from({ length: elementCount }, (_, index) => (
           <ListSkeleton key={index} />
@@ -35,7 +48,14 @@ export default function AnimeElements({
         !isLoading &&
         uniqueData.map((anime: Anime) => {
           return (
-            <div key={anime.mal_id} className="my-auto">
+            <motion.div
+              key={anime.mal_id}
+              layout
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="my-auto"
+            >
               <button
                 className="btn-ghost transition-all ease-in-out duration-300 flex flex-col py-3 rounded will-change-auto mx-auto w-11/12"
                 onClick={() => {
@@ -79,9 +99,9 @@ export default function AnimeElements({
               <dialog id={`anime-modal-${anime.mal_id}`} className="modal">
                 <AnimeModal anime={anime} />
               </dialog>
-            </div>
+            </motion.div>
           );
         })}
-    </>
+    </AnimatePresence>
   );
 }

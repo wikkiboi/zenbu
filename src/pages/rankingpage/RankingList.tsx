@@ -7,7 +7,8 @@ import { RankingParams } from "./RankingPage";
 import ListLayout from "../../layout/ListLayout";
 import ButtonRow from "../../layout/ButtonRow";
 import LoadingBar from "../../components/LoadingBar";
-import ButtonRowSkeleton from "../../skeleton/ButtonRowSkeleton";
+import ButtonRowSkeleton from "../../components/ButtonRowSkeleton";
+import { toast } from "sonner";
 
 export type TopRankingFilters = "bypopularity" | "favorite";
 
@@ -31,8 +32,9 @@ export default function RankingList({ filter, page }: RankingParams) {
     staleTime: 60 * 2000,
   });
 
-  if (error instanceof Error && !isFetching)
-    return <div>Error: {error.message}</div>;
+  if (error instanceof Error && !isFetching) {
+    toast.error("Error fetching ranking list");
+  }
 
   const pagination = data?.pagination;
   const animeData = data?.data;

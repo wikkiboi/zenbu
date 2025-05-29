@@ -7,7 +7,7 @@ import { HomeParams } from "./Homepage";
 import ButtonRow from "../../layout/ButtonRow";
 import ListLayout from "../../layout/ListLayout";
 import LoadingBar from "../../components/LoadingBar";
-import ButtonRowSkeleton from "../../skeleton/ButtonRowSkeleton";
+import ButtonRowSkeleton from "../../components/ButtonRowSkeleton";
 import { toast } from "sonner";
 
 export default function AiringList({ page, type }: HomeParams) {

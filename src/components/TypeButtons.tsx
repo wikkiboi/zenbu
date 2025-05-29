@@ -3,6 +3,7 @@ import { AnimeType } from "../api/types";
 import { formatType } from "../helper/formatType";
 import arrowIcon from "../svg/dropdown-arrow.svg";
 import filterIcon from "../svg/filter-button.svg";
+import { useEffect, useRef, useState } from "react";
 const animeTypes: AnimeType[] = [
   "tv",
   "movie",
@@ -20,34 +21,50 @@ interface TypeButtonProps {
 }
 
 export default function TypeButtons({ type }: TypeButtonProps) {
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <div className="dropdown z-10 ml-3">
+    <div ref={dropdownRef} className="relative z-10 ml-3">
       <button
-        tabIndex={0}
-        role="button"
+        type="button"
+        onClick={() => setOpen(!open)}
         className="btn btn-sm gap-1.5 hidden md:flex"
       >
         {formatType(type)}
         <img src={arrowIcon} alt="Arrow Icon" className="w-4 invert" />
       </button>
-      <div tabIndex={0} className="btn btn-sm md:hidden p-2">
+      <div className="btn btn-sm md:hidden p-2" onClick={() => setOpen(!open)}>
         <img src={filterIcon} alt="Filter Icon" className="w-4 invert" />
       </div>
-      <div
-        tabIndex={0}
-        className="dropdown-content menu bg-base-300 rounded-box z-[1] p-2 mt-1 shadow-md"
-      >
-        {animeTypes.map((type) => (
-          <Link
-            to="."
-            key={type}
-            className="btn btn-ghost"
-            search={{ type, page: 1 }}
-          >
-            {formatType(type)}
-          </Link>
-        ))}
-      </div>
+      {open && (
+        <div className="absolute menu bg-base-300 rounded-box z-[1] p-2 mt-1 shadow-md">
+          {animeTypes.map((type) => (
+            <Link
+              to="."
+              key={type}
+              className="btn btn-ghost"
+              search={{ type, page: 1 }}
+              onClick={() => setOpen(false)} // Close dropdown on click
+            >
+              {formatType(type)}
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

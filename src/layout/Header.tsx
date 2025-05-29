@@ -6,10 +6,28 @@ import homeIcon from "../svg/home.svg";
 import rankingIcon from "../svg/ranking.svg";
 import searchIcon from "../svg/magnifying-glass.svg";
 import dropdownIcon from "../svg/dropdown-icon.svg";
+import { useState, useRef, useEffect } from "react";
 
 // bg-[#7A82A]
 
 export default function Header() {
+  const [open, setOpen] = useState(false);
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <header className="navbar bg-base-100">
       <Link to="/" className="btn btn-ghost justify-start">
@@ -23,6 +41,17 @@ export default function Header() {
               "search-modal"
             ) as HTMLDialogElement;
             dialog.showModal();
+            setIsSearchModalOpen(true);
+
+            if (dialog) {
+              dialog.showModal();
+              setTimeout(() => {
+                const input = document.getElementById(
+                  "search-input"
+                ) as HTMLInputElement | null;
+                input?.focus();
+              }, 0);
+            }
           }}
         >
           <img
@@ -32,7 +61,10 @@ export default function Header() {
           />
           Search
         </button>
-        <ShortSearchBar />
+        <ShortSearchBar
+          isSearchModalOpen={isSearchModalOpen}
+          setIsSearchModalOpen={setIsSearchModalOpen}
+        />
         <div className="hidden md:flex">
           <NavLink path="/">
             <img src={homeIcon} alt="Home Icon" className="w-3 pt-0.5 invert" />
@@ -51,49 +83,58 @@ export default function Header() {
             Seasonal
           </NavLink>
         </div>
-        <div className="md:hidden dropdown dropdown-bottom dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost">
+        <div
+          ref={dropdownRef}
+          className="md:hidden dropdown dropdown-bottom dropdown-end"
+        >
+          <button
+            tabIndex={0}
+            className="btn btn-ghost"
+            onClick={() => setOpen(!open)}
+          >
             <img
               src={dropdownIcon}
               alt="Dropdown Icon"
               className="w-3 invert"
             />
-          </label>
-          <ul
-            tabIndex={0}
-            className="dropdown-content menu p-2 shadow bg-base-100 z-[1] rounded-box w-52"
-          >
-            <li>
-              <NavLink path="/">
-                <img
-                  src={homeIcon}
-                  alt="Home Icon"
-                  className="w-3 pt-0.5 invert"
-                />
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink path="/ranking">
-                <img
-                  src={rankingIcon}
-                  alt="Ranking Icon"
-                  className="w-3 pt-0.5 invert"
-                />
-                Rankings
-              </NavLink>
-            </li>
-            <li>
-              <NavLink path="/seasonal">
-                <img
-                  src={leafIcon}
-                  alt="Leaf Icon"
-                  className="w-3 pt-0.5 invert"
-                />
-                Seasonal
-              </NavLink>
-            </li>
-          </ul>
+          </button>
+          {open && (
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu p-2 shadow-md bg-base-300 z-[1] rounded-box w-52 mt-2"
+            >
+              <li onClick={() => setOpen(false)}>
+                <NavLink path="/">
+                  <img
+                    src={homeIcon}
+                    alt="Home Icon"
+                    className="w-3 pt-0.5 invert"
+                  />
+                  Home
+                </NavLink>
+              </li>
+              <li onClick={() => setOpen(false)}>
+                <NavLink path="/ranking">
+                  <img
+                    src={rankingIcon}
+                    alt="Ranking Icon"
+                    className="w-3 pt-0.5 invert"
+                  />
+                  Rankings
+                </NavLink>
+              </li>
+              <li onClick={() => setOpen(false)}>
+                <NavLink path="/seasonal">
+                  <img
+                    src={leafIcon}
+                    alt="Leaf Icon"
+                    className="w-3 pt-0.5 invert"
+                  />
+                  Seasonal
+                </NavLink>
+              </li>
+            </ul>
+          )}
         </div>
       </nav>
     </header>

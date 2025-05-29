@@ -3,13 +3,10 @@ import { Anime } from "../api/types";
 
 interface ShortSearchResultsProps {
   searchData?: Anime[];
-  debouncedQuery: string;
 }
 export default function ShortSearchResults({
   searchData,
-  debouncedQuery,
 }: ShortSearchResultsProps) {
-  if (debouncedQuery === "") searchData = [];
   return (
     <>
       {searchData && searchData.length > 1 && (
@@ -27,13 +24,19 @@ export default function ShortSearchResults({
                 <Link
                   to={`/anime/${search.mal_id}`}
                   className="flex btn-ghost rounded p-1 transition duration-200 ease-in-out w-full"
+                  onClick={() => {
+                    const modal = document.getElementById(
+                      "search-input"
+                    ) as HTMLDialogElement;
+                    modal?.close();
+                  }}
                 >
                   <img
                     src={search.images.webp.image_url}
                     className="w-8 aspect-[7/10] object-cover mr-2"
                   />
                   <div className="flex flex-col md:max-w-80 max-w-60">
-                    <h1 className="font-bold text-sm truncate">
+                    <h1 className="font-bold text-sm md:truncate overflow-hidden text-ellipses">
                       {search.title_english || search.title}
                     </h1>
                     <h2 className="text-xs">{`(${search.type}, ${year})`}</h2>

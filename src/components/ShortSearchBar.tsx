@@ -1,36 +1,64 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { fetchSearchAnime } from "../api/fetch";
 import { useDebounce } from "use-debounce";
 import ShortSearchResults from "./ShortSearchResults";
 import { Link } from "@tanstack/react-router";
+import { toast } from "sonner";
 
-export default function ShortSearchBar() {
+interface ShortSearchBarProps {
+  isSearchModalOpen: boolean;
+  setIsSearchModalOpen: (state: boolean) => void;
+}
+
+export default function ShortSearchBar({
+  isSearchModalOpen,
+  setIsSearchModalOpen,
+}: ShortSearchBarProps) {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [debouncedQuery] = useDebounce(searchQuery, 1000);
-  const queryClient = useQueryClient();
-
   const modalRef = useRef<HTMLDialogElement | null>(null);
+  const queryClient = useQueryClient();
 
   const { data, error, isFetching } = useQuery({
     queryKey: ["searchResults", debouncedQuery],
     queryFn: () => fetchSearchAnime({ q: debouncedQuery, limit: 10 }),
-    enabled: debouncedQuery.length > 0,
+    enabled: debouncedQuery.length > 0 && isSearchModalOpen,
     refetchOnWindowFocus: false,
   });
 
   const searchData = data?.data;
-  if (error instanceof Error && !isFetching)
-    return <div>Error: {error.message}</div>;
+  if (error instanceof Error && !isFetching) {
+    toast.error("Error fetching search results");
+    console.log(error.message);
+  }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchQuery(e.target.value);
   }
 
+  useEffect(() => {
+    const dialog = modalRef.current;
+    if (!dialog) return;
+
+    const handleClose = () => {
+      setIsSearchModalOpen(false);
+      setSearchQuery("");
+    };
+
+    if (!dialog.open) {
+      handleClose();
+    }
+
+    dialog.addEventListener("close", handleClose);
+    return () => dialog.removeEventListener("close", handleClose);
+  }, [setIsSearchModalOpen]);
+
   function closeModal() {
-    setSearchQuery("");
-    queryClient.removeQueries({ queryKey: ["searchResults"] });
     modalRef.current?.close();
+    queryClient.removeQueries({
+      predicate: (query) => query.queryKey[0] === "searchResults",
+    });
   }
 
   return (
@@ -47,22 +75,22 @@ export default function ShortSearchBar() {
         </form>
         <div className="flex flex-col">
           <input
+            id="search-input"
             type="text"
             className="input input-bordered rounded-xl w-full mb-2"
             onChange={handleChange}
             value={searchQuery}
             placeholder="Search anime..."
           ></input>
-          <ShortSearchResults
-            searchData={searchData}
-            debouncedQuery={debouncedQuery}
-          />
+          {debouncedQuery.length > 0 && (
+            <ShortSearchResults searchData={searchData} />
+          )}
           <div className="ml-auto mr-1">
             <Link
               className="link link-hover text-xs opacity-40"
               to="/search"
               onClick={closeModal}
-              search={() => ({ q: debouncedQuery })}
+              search={() => ({ q: searchQuery })}
             >
               Advanced Search Filters »
             </Link>
