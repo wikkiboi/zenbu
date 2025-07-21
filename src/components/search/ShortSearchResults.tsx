@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Anime } from "../api/types";
+import { Anime } from "../../api/types";
 
 interface ShortSearchResultsProps {
   searchData?: Anime[];
