@@ -25,10 +25,14 @@ export default function AnimeModal({ anime }: AnimeModalProps) {
 
         <Link
           to={`/anime/${anime.mal_id}`}
-          className="flex font-extrabold text-lg hover:underline ml-1 z-1"
+          className="inline-block hover:underline ml-1 z-1"
         >
-          {anime.title}
-          <LinkIcon className="size-3.5 my-auto ml-1" />
+          <h1 className="inline-block text-lg font-extrabold hover:underline">
+            {anime.title}
+            <span className="inline-block w-[1em] h-[1em] ml-1 align-text-bottom">
+              <LinkIcon className="size-3.5" />
+            </span>
+          </h1>
         </Link>
         <div className="bg-base-100 flex rounded-lg p-3 gap-2 my-1">
           <img

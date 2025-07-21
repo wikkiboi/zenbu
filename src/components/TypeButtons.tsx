@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useSearch } from "@tanstack/react-router";
 import { AnimeType } from "../api/types";
 import { formatType } from "../helper/formatType";
 import arrowIcon from "../svg/dropdown-arrow.svg";
@@ -23,6 +23,8 @@ interface TypeButtonProps {
 export default function TypeButtons({ type }: TypeButtonProps) {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const { type: currentType } = useSearch({ from: "/" });
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -56,7 +58,11 @@ export default function TypeButtons({ type }: TypeButtonProps) {
             <Link
               to="."
               key={type}
-              className="btn btn-ghost"
+              className={`btn btn-ghost ${
+                currentType === type
+                  ? "bg-secondary text-secondary-content"
+                  : ""
+              } mb-1`}
               search={{ type, page: 1 }}
               onClick={() => setOpen(false)} // Close dropdown on click
             >

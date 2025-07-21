@@ -32,9 +32,13 @@ export default function SeasonalList({ year, season, page }: SeasonalParams) {
     <>
       <LoadingBar isLoading={isLoading} isFetching={isFetching} />
       <div className="flex flex-col">
-        <ButtonRow>
-          {pagination && <PageButtons pagination={pagination} />}
-        </ButtonRow>
+        {pagination ? (
+          <ButtonRow>
+            <PageButtons pagination={pagination} />
+          </ButtonRow>
+        ) : (
+          <ButtonRowSkeleton />
+        )}
         <ListLayout isFetching={isFetching}>
           <AnimeElements animeData={animeData} isLoading={isLoading} />
         </ListLayout>

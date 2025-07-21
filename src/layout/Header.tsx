@@ -29,7 +29,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="navbar bg-base-100">
+    <header className="sticky top-0 left-0 right-0 z-50 navbar bg-base-100">
       <Link to="/" className="btn btn-ghost justify-start">
         zenbu
       </Link>
