@@ -33,7 +33,7 @@ export default function Header() {
       <Link to="/" className="btn btn-ghost justify-start">
         zenbu
       </Link>
-      <nav className="ml-auto gap-1">
+      <nav className="ml-auto gap-2">
         <button
           className="btn btn-ghost"
           onClick={() => {
@@ -65,7 +65,7 @@ export default function Header() {
           isSearchModalOpen={isSearchModalOpen}
           setIsSearchModalOpen={setIsSearchModalOpen}
         />
-        <div className="hidden md:flex">
+        <div className="hidden md:flex gap-2">
           <NavLink path="/">
             <img src={homeIcon} alt="Home Icon" className="w-3 pt-0.5 invert" />
             Home

@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useSearch } from "@tanstack/react-router";
 import { TopRankingFilters } from "./RankingList";
 import { formatFilter } from "../../helper/formatFilter";
 import arrowIcon from "../../svg/dropdown-arrow.svg";
@@ -9,9 +9,9 @@ interface RankingFilterProps {
 }
 
 const rankingFilters: (TopRankingFilters | "score")[] = [
+  "score",
   "bypopularity",
   "favorite",
-  "score",
 ];
 
 export default function RankingFilterButtons({ filter }: RankingFilterProps) {
@@ -30,6 +30,8 @@ export default function RankingFilterButtons({ filter }: RankingFilterProps) {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const { filter: currentFilter = "score" } = useSearch({ from: "/ranking" });
 
   return (
     <div ref={dropdownRef} className="dropdown z-10 ml-3">
@@ -55,7 +57,11 @@ export default function RankingFilterButtons({ filter }: RankingFilterProps) {
               return (
                 <Link
                   to="."
-                  className="btn btn-ghost"
+                  className={`btn btn-ghost ${
+                    currentFilter === filter
+                      ? "bg-secondary text-secondary-content"
+                      : ""
+                  } mb-1`}
                   key={filter}
                   search={() => ({ filter: undefined, page: 1 })}
                 >

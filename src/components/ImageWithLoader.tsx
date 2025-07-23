@@ -32,18 +32,22 @@ export default function ImageWithLoader({
   return (
     <>
       {!isLoaded && <ImageSkeleton />}
-      <div className="relative md:w-44 w-28 mx-auto">
+      <div className="relative inline-block w-11/12 mx-auto">
         <img
           className={`${
-            isLoaded ? "block" : "hidden"
-          } object-cover aspect-[7/10] mx-auto mb-2 rounded max-h-[240px]`}
+            isLoaded ? "" : "hidden"
+          } object-cover aspect-[7/10] mx-auto mb-2 rounded w-11/12`}
           src={src}
           alt={`Image of ${alt}`}
           onLoad={() => setIsLoaded(true)}
         />
         {showRank && (
-          <div className="absolute top-1 left-1 bg-opacity-50 text-white btn btn-circle md:btn-sm btn-xs">
-            <h2 className="text-md font-bold m-auto">{rank ? rank : "N/A"}</h2>
+          <div
+            className={`${
+              isLoaded ? "" : "hidden"
+            } absolute inset-0 top-1 lg:top-2 left-2 lg:left-3 bg-opacity-70 bg-black text-white border-transparent btn btn-circle md:btn-sm btn-xs`}
+          >
+            <h2 className="text-sm font-bold m-auto">{rank ? rank : "N/A"}</h2>
           </div>
         )}
       </div>

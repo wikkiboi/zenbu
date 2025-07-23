@@ -57,7 +57,7 @@ export default function AnimeElements({
               className="my-auto"
             >
               <button
-                className="btn-ghost transition-all ease-in-out duration-300 flex flex-col py-3 rounded will-change-auto mx-auto w-11/12"
+                className="btn-ghost transition-all ease-in-out duration-300 flex flex-col py-2 px-4 lg:px-0 rounded will-change-auto mx-auto w-11/12"
                 onClick={() => {
                   const dialog = document.getElementById(
                     `anime-modal-${anime.mal_id}`

@@ -1,8 +1,8 @@
 import { Link, useSearch } from "@tanstack/react-router";
-import { AnimeType } from "../api/types";
-import { formatType } from "../helper/formatType";
-import arrowIcon from "../svg/dropdown-arrow.svg";
-import filterIcon from "../svg/filter-button.svg";
+import { AnimeType } from "../../api/types";
+import { formatType } from "../../helper/formatType";
+import arrowIcon from "../../svg/dropdown-arrow.svg";
+import filterIcon from "../../svg/filter-button.svg";
 import { useEffect, useRef, useState } from "react";
 const animeTypes: AnimeType[] = [
   "tv",
@@ -24,7 +24,7 @@ export default function TypeButtons({ type }: TypeButtonProps) {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const { type: currentType } = useSearch({ from: "/" });
+  const { type: currentType = "tv" } = useSearch({ from: "/" });
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
