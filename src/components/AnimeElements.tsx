@@ -1,7 +1,6 @@
 import { Anime } from "../api/types";
 import ImageWithLoader from "./ImageWithLoader";
 import { Link, useNavigate } from "@tanstack/react-router";
-import { nanoid } from "nanoid";
 import AnimeModal from "./AnimeModal";
 import { AnimatePresence, motion } from "framer-motion";
 interface AnimeElementProps {
@@ -74,10 +73,10 @@ export default function AnimeElements({
                   showRank={showRank}
                   rank={showRank ? anime.rank : undefined}
                 />
-                <h2 className="truncate md:max-w-40 max-w-28 text-center font-semibold md:text-md text-sm mx-auto mb-1">
+                <h2 className="truncate md:max-w-40 max-w-28 text-center font-semibold md:text-base text-xs mb-1 sm:mx-auto">
                   {anime.title}
                 </h2>
-                <div className="mx-auto flex gap-0.5">
+                <div className="flex gap-0.5 w-full justify-center">
                   {anime.genres.slice(0, 3).map((genre) => (
                     <Link
                       className="btn h-4 min-h-4  md:btn-xs border border-gray-500 md:text-[8px] text-[6px] md:px-2 px-1 rounded-xl"
@@ -89,7 +88,7 @@ export default function AnimeElements({
                         });
                       }}
                       to={`/search?genres=${genre.name}`}
-                      key={nanoid()}
+                      key={genre.name + anime.mal_id}
                     >
                       {genre.name.charAt(0).toUpperCase() + genre.name.slice(1)}
                     </Link>

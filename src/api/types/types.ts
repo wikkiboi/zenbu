@@ -104,14 +104,25 @@ export interface Anime {
   explicit_genres: RelatedData[];
   themes: RelatedData[];
   demographics: RelatedData[];
+  relations?: Relations[];
 }
 
+export interface FullAnimeData {
+  data: Anime;
+}
 export interface RelatedData {
   mal_id: number;
   type: string;
   name: string;
   url?: string;
 }
+
+export interface Relations {
+  relation: KeyRelation | string;
+  entry: RelatedData[];
+}
+
+export type KeyRelation = "Prequel" | "Sequel" | "Adaptation";
 
 export interface Broadcast {
   day?: string;

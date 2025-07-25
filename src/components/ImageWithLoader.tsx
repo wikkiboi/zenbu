@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 interface ImageWithLoaderProps {
   src: string;
@@ -8,9 +8,7 @@ interface ImageWithLoaderProps {
 }
 
 function ImageSkeleton() {
-  return (
-    <div className="skeleton md:w-44 w-28 aspect-[7/10] mx-auto mb-2"></div>
-  );
+  return <div className="skeleton inline-block w-11/12 mx-auto mb-2"></div>;
 }
 
 export default function ImageWithLoader({
@@ -30,7 +28,7 @@ export default function ImageWithLoader({
   }, [src]);
 
   return (
-    <>
+    <Suspense fallback={<ImageSkeleton />}>
       {!isLoaded && <ImageSkeleton />}
       <div className="relative inline-block w-11/12 mx-auto">
         <img
@@ -51,6 +49,6 @@ export default function ImageWithLoader({
           </div>
         )}
       </div>
-    </>
+    </Suspense>
   );
 }

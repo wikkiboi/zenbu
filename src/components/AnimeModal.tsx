@@ -1,24 +1,18 @@
 import { Link } from "@tanstack/react-router";
 import { Anime } from "../api/types";
-import { useState } from "react";
 import { Link as LinkIcon } from "lucide-react";
+import Synopsis from "./anime-synopsis";
 
 interface AnimeModalProps {
   anime: Anime;
 }
 
 export default function AnimeModal({ anime }: AnimeModalProps) {
-  const [expandedSynopsis, setExpandedSynopsis] = useState(false);
-  const synopsis = anime.synopsis || "No synopsis available";
-
   return (
     <>
       <div className="modal-box bg-neutral p-4">
         <form method="dialog" className="modal-backdrop">
-          <button
-            className="btn btn-sm btn-circle absolute right-2 top-2 bg-transparent border-none shadow-none"
-            onClick={() => setExpandedSynopsis(false)}
-          >
+          <button className="btn btn-sm btn-circle absolute right-2 top-2 bg-transparent border-none shadow-none">
             ✕
           </button>
         </form>
@@ -63,16 +57,7 @@ export default function AnimeModal({ anime }: AnimeModalProps) {
           </div>
         </div>
         <div className="bg-base-100 rounded-lg py-2 px-4">
-          <h2 className="font-bold text-lg">Synopsis</h2>
-          <p className={`${!expandedSynopsis ? "line-clamp-5" : ""}`}>
-            {synopsis}
-          </p>
-          <button
-            onClick={() => setExpandedSynopsis(!expandedSynopsis)}
-            className="mt-1 text-primary underline text-sm"
-          >
-            {expandedSynopsis ? "Show less" : "Read more"}
-          </button>
+          <Synopsis synopsis={anime.synopsis ?? "No synopsis available"} />
         </div>
         <div className="mt-3 text-right">
           <Link
@@ -84,11 +69,7 @@ export default function AnimeModal({ anime }: AnimeModalProps) {
         </div>
       </div>
       <form method="dialog" className="modal-backdrop">
-        <button
-          className="cursor-default"
-          aria-hidden="true"
-          onClick={() => setExpandedSynopsis(false)}
-        >
+        <button className="cursor-default" aria-hidden="true">
           close
         </button>
       </form>
