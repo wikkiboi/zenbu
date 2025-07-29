@@ -35,8 +35,8 @@ export default function ShortSearchResults({
                     src={search.images.webp.image_url}
                     className="w-8 aspect-[7/10] object-cover mr-2"
                   />
-                  <div className="flex flex-col md:max-w-80 max-w-60">
-                    <h1 className="font-bold text-sm md:truncate overflow-hidden text-ellipses">
+                  <div className="flex flex-col w-10/12 md:11/12">
+                    <h1 className="font-bold text-sm truncate overflow-hidden text-ellipses hover:underline">
                       {search.title_english || search.title}
                     </h1>
                     <h2 className="text-xs">{`(${search.type}, ${year})`}</h2>

@@ -13,6 +13,9 @@ export default {
       animation: {
         fadePulse: "fadePulse 1.5s infinite", // Infinite looping animation
       },
+      screens: {
+        xs: "460px",
+      },
     },
   },
   variants: {

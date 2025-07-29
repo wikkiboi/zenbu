@@ -56,7 +56,7 @@ export default function AnimeElements({
               className="my-auto"
             >
               <button
-                className="btn-ghost transition-all ease-in-out duration-300 flex flex-col py-2 px-4 lg:px-0 rounded will-change-auto mx-auto w-11/12"
+                className="btn-ghost transition-all ease-in-out duration-300 flex flex-col py-2 px-4 lg:px-0 rounded will-change-auto mx-auto w-full"
                 onClick={() => {
                   const dialog = document.getElementById(
                     `anime-modal-${anime.mal_id}`
@@ -73,13 +73,13 @@ export default function AnimeElements({
                   showRank={showRank}
                   rank={showRank ? anime.rank : undefined}
                 />
-                <h2 className="truncate md:max-w-40 max-w-28 text-center font-semibold md:text-base text-xs mb-1 sm:mx-auto">
+                <h2 className="truncate md:max-w-40 max-w-32 text-center font-semibold md:text-base text-xs max-sm:text-[10px] mb-1 mx-auto max-sm:hidden">
                   {anime.title}
                 </h2>
                 <div className="flex gap-0.5 w-full justify-center">
                   {anime.genres.slice(0, 3).map((genre) => (
                     <Link
-                      className="btn h-4 min-h-4  md:btn-xs border border-gray-500 md:text-[8px] text-[6px] md:px-2 px-1 rounded-xl"
+                      className="btn h-4 min-h-4  md:btn-xs border border-zinc-500 md:text-[8px] text-[6px] md:px-2 px-1 rounded-xl hover:bg-secondary hover:text-secondary-content hover:border-transparent"
                       onClick={(event) => {
                         event.stopPropagation();
                         event.preventDefault();

@@ -10,7 +10,7 @@ interface AnimeModalProps {
 export default function AnimeModal({ anime }: AnimeModalProps) {
   return (
     <>
-      <div className="modal-box bg-neutral p-4">
+      <div className="modal-box bg-neutral p-4 max-w-prose">
         <form method="dialog" className="modal-backdrop">
           <button className="btn btn-sm btn-circle absolute right-2 top-2 bg-transparent border-none shadow-none">
             ✕
@@ -28,13 +28,13 @@ export default function AnimeModal({ anime }: AnimeModalProps) {
             </span>
           </h1>
         </Link>
-        <div className="bg-base-100 flex rounded-lg p-3 gap-2 my-1">
+        <div className="bg-base-100 flex rounded-lg p-3 gap-4 my-1 mb-2">
           <img
             src={anime.images.webp.large_image_url}
             alt={anime.title}
-            className="w-1/3 rounded object-cover aspect-[7/10] max-h-[250px]"
+            className="w-1/3 rounded object-cover"
           />
-          <div className="">
+          <div className="max-xs:text-sm text-2xl lg:my-auto">
             <p>Score: {anime.score || "N/A"}</p>
             <p>
               Ranked: {anime.rank ? `#${anime.rank.toLocaleString()}` : "N/A"}
@@ -56,10 +56,10 @@ export default function AnimeModal({ anime }: AnimeModalProps) {
             <p>Source: {anime.source}</p>
           </div>
         </div>
-        <div className="bg-base-100 rounded-lg py-2 px-4">
+        <div className="bg-base-100 rounded-lg py-2 px-4 mb-3">
           <Synopsis synopsis={anime.synopsis ?? "No synopsis available"} />
         </div>
-        <div className="mt-3 text-right">
+        <div className="text-right">
           <Link
             to={`/anime/${anime.mal_id}`}
             className="btn btn-sm btn-primary"

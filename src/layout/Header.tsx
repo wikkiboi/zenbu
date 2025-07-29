@@ -101,7 +101,7 @@ export default function Header() {
           {open && (
             <ul
               tabIndex={0}
-              className="dropdown-content menu p-2 shadow-md bg-base-300 z-[1] rounded-box w-52 mt-2"
+              className="dropdown-content menu p-2 shadow-md bg-base-300 z-[1] rounded-box w-52 max-sm:w-[96vw] mt-2"
             >
               <li onClick={() => setOpen(false)}>
                 <NavLink path="/">

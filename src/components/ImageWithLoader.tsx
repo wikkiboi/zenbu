@@ -30,11 +30,11 @@ export default function ImageWithLoader({
   return (
     <Suspense fallback={<ImageSkeleton />}>
       {!isLoaded && <ImageSkeleton />}
-      <div className="relative inline-block w-11/12 mx-auto">
+      <div className="relative inline-block w-11/12 max-sm:w-full mx-auto">
         <img
           className={`${
             isLoaded ? "" : "hidden"
-          } object-cover aspect-[7/10] mx-auto mb-2 rounded w-11/12`}
+          } object-cover aspect-[7/10] mx-auto mb-2 rounded w-11/12 max-sm:w-full`}
           src={src}
           alt={`Image of ${alt}`}
           onLoad={() => setIsLoaded(true)}

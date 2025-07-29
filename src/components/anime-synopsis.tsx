@@ -13,7 +13,7 @@ export default function Synopsis({
   }, []);
 
   return (
-    <div>
+    <>
       <h2 className="font-bold text-lg">Synopsis</h2>
       <p
         className={`${
@@ -24,13 +24,13 @@ export default function Synopsis({
       </p>
       <button
         onClick={() => setExpandedSynopsis(!expandedSynopsis)}
-        className="mt-1 text-primary underline text-sm hidden md:block"
+        className="mt-1 text-primary hover:underline text-sm hidden md:block"
       >
         {expandedSynopsis ? "Show less" : "Read more"}
       </button>
       <button
         onClick={() => setExpandedSynopsis(!expandedSynopsis)}
-        className="text-primary md:hidden flex justify-center w-full"
+        className="text-primary  flex justify-center w-full md:hidden hover:bg-base-200 transition-colors rounded"
       >
         {expandedSynopsis ? (
           <ChevronUp className="size-6" />
@@ -38,6 +38,6 @@ export default function Synopsis({
           <ChevronDown className="size-6" />
         )}
       </button>
-    </div>
+    </>
   );
 }

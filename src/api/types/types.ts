@@ -105,6 +105,7 @@ export interface Anime {
   themes: RelatedData[];
   demographics: RelatedData[];
   relations?: Relations[];
+  external: { name: string; url: string }[];
 }
 
 export interface FullAnimeData {
