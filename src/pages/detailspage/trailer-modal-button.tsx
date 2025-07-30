@@ -13,6 +13,9 @@ export default function TrailerModalButton({
   setTrailerUrl,
 }: TrailerModalButtonProps) {
   const openModal = () => {
+    if (!animeData.trailer.embed_url) {
+      return;
+    }
     const dialog = document.getElementById(
       "trailer-modal"
     ) as HTMLDialogElement;
@@ -23,19 +26,27 @@ export default function TrailerModalButton({
 
   return (
     <div className="w-4/5 mr-auto relative hover:cursor-pointer hover:opacity-90 transition duration-200">
-      <img src={animeData.trailer.images.large_image_url} />
+      {animeData.trailer.images.large_image_url ? (
+        <img src={animeData.trailer.images.large_image_url} />
+      ) : (
+        <div className="aspect-video w-80">No trailer available</div>
+      )}
 
-      <button
-        className="absolute group inset-0 z-10 flex items-center justify-center"
-        onClick={openModal}
-      >
-        <div className="bg-base-100 group-hover:bg-base-300 rounded border-2 px-2 py-0.5">
-          <Play className="w-10 h-6" />
-        </div>
-      </button>
-      <h3 className="absolute inset-0 flex items-end justify-start text-base md:text-lg p-1 md:p-2 bg-gradient-to-t from-black/10 to-transparent">
-        Trailer
-      </h3>
+      {animeData.trailer.embed_url && (
+        <>
+          <button
+            className="absolute group inset-0 z-10 flex items-center justify-center"
+            onClick={openModal}
+          >
+            <div className="bg-base-100 group-hover:bg-base-300 rounded border-2 px-2 py-0.5">
+              <Play className="w-10 h-6" />
+            </div>
+          </button>
+          <h3 className="absolute inset-0 flex items-end justify-start text-base md:text-lg p-1 md:p-2 bg-gradient-to-t from-black/10 to-transparent">
+            Trailer
+          </h3>
+        </>
+      )}
     </div>
   );
 }

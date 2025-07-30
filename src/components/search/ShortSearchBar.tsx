@@ -16,7 +16,7 @@ export default function ShortSearchBar({
   setIsSearchModalOpen,
 }: ShortSearchBarProps) {
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [debouncedQuery] = useDebounce(searchQuery, 1000);
+  const [debouncedQuery] = useDebounce(searchQuery, 750);
   const modalRef = useRef<HTMLDialogElement | null>(null);
   const queryClient = useQueryClient();
 
@@ -77,7 +77,9 @@ export default function ShortSearchBar({
           <input
             id="search-input"
             type="text"
-            className="input input-bordered rounded-xl w-full mb-2"
+            className={`input input-bordered rounded-xl w-full mb-2 ${
+              isFetching && "opacity-70"
+            }`}
             onChange={handleChange}
             value={searchQuery}
             placeholder="Search anime..."

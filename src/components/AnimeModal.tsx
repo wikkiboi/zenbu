@@ -34,26 +34,79 @@ export default function AnimeModal({ anime }: AnimeModalProps) {
             alt={anime.title}
             className="w-1/3 rounded object-cover"
           />
-          <div className="max-xs:text-sm text-2xl lg:my-auto">
-            <p>Score: {anime.score || "N/A"}</p>
+          <div className="flex-1 flex flex-col text-xl max-sm:text-sm md:text-2xl">
+            <div className="border-b border-zinc-500 sm:pb-2 mb-2">
+              {anime.title_english && (
+                <span className="flex gap-1 text-base max-sm:text-[9px] leading-5">
+                  <span className="text-[10px]">🇬🇧</span>
+                  <p className="font-bold">{anime.title_english}</p>
+                </span>
+              )}
+              {anime.title_japanese && (
+                <span className="flex gap-1 text-base max-sm:text-[8px]">
+                  <span className="text-[10px]">🇯🇵</span>
+                  <p className="font-bold">{anime.title_japanese}</p>
+                </span>
+              )}
+            </div>
             <p>
-              Ranked: {anime.rank ? `#${anime.rank.toLocaleString()}` : "N/A"}
+              <span className="font-bold">Score:</span> {anime.score || "N/A"}
             </p>
             <p>
-              Popularity:{" "}
+              <span className="font-bold">Ranked:</span>{" "}
+              {anime.rank ? `#${anime.rank.toLocaleString()}` : "N/A"}
+            </p>
+            <p>
+              <span className="font-bold">Popularity:</span>{" "}
               {anime.popularity
                 ? `#${anime.popularity.toLocaleString()}`
                 : "N/A"}
             </p>
-            <p>Members: {anime.members.toLocaleString()}</p>
+            <p>
+              <span className="font-bold">Members:</span>{" "}
+              {anime.members.toLocaleString()}
+            </p>
             {anime.season && anime.year && (
               <p>
-                First Aired:{" "}
+                <span className="font-bold">First Aired:</span>{" "}
                 {anime.season.charAt(0).toUpperCase() + anime.season.slice(1)}{" "}
                 {anime.year}
               </p>
             )}
-            <p>Source: {anime.source}</p>
+            <p>
+              <span className="font-bold">Source:</span> {anime.source}
+            </p>
+            <div className="max-xs:hidden my-auto">
+              <div className="flex-1 flex justify-center gap-6 md:gap-8 sm:text-sm md:text-lg">
+                <p
+                  className={`${
+                    anime.status === "Not yet aired"
+                      ? "opacity-100 text-orange-400"
+                      : "opacity-15"
+                  }`}
+                >
+                  Upcoming
+                </p>
+                <p
+                  className={`${
+                    anime.status === "Currently Airing"
+                      ? "opacity-100 text-green-600"
+                      : "opacity-15"
+                  }`}
+                >
+                  Airing
+                </p>
+                <p
+                  className={`${
+                    anime.status === "Finished Airing"
+                      ? "opacity-100 text-yellow-400"
+                      : "opacity-15"
+                  }`}
+                >
+                  Completed
+                </p>
+              </div>
+            </div>
           </div>
         </div>
         <div className="bg-base-100 rounded-lg py-2 px-4 mb-3">

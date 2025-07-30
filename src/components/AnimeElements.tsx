@@ -12,9 +12,8 @@ interface AnimeElementProps {
 
 function ListSkeleton() {
   return (
-    <div>
-      <div className="skeleton mx-auto my-4 mb-2 md:w-44 w-28 aspect-[7/10]" />
-      <div className="skeleton mx-auto w-32 h-3" />
+    <div className="py-2">
+      <div className="skeleton aspect-[7/10] mx-auto mb-2 rounded w-10/12" />
       <div className="flex gap-2 w-24 mx-auto mt-2">
         <div className="skeleton mx-auto w-8 h-4" />
         <div className="skeleton mx-auto w-8 h-4" />
@@ -56,7 +55,7 @@ export default function AnimeElements({
               className="my-auto"
             >
               <button
-                className="btn-ghost transition-all ease-in-out duration-300 flex flex-col py-2 px-4 lg:px-0 rounded will-change-auto mx-auto w-full"
+                className="btn-ghost transition-all ease-in-out duration-300 flex flex-col px-3 py-2 pt-4 sm:pt-3 max-md:p-2  rounded will-change-auto mx-auto w-full"
                 onClick={() => {
                   const dialog = document.getElementById(
                     `anime-modal-${anime.mal_id}`
@@ -73,13 +72,13 @@ export default function AnimeElements({
                   showRank={showRank}
                   rank={showRank ? anime.rank : undefined}
                 />
-                <h2 className="truncate md:max-w-40 max-w-32 text-center font-semibold md:text-base text-xs max-sm:text-[10px] mb-1 mx-auto max-sm:hidden">
+                {/* <h2 className="truncate md:max-w-40 max-w-32 text-center font-semibold md:text-base text-xs max-sm:text-[10px] mb-1 mx-auto max-sm:hidden">
                   {anime.title}
-                </h2>
+                </h2> */}
                 <div className="flex gap-0.5 w-full justify-center">
                   {anime.genres.slice(0, 3).map((genre) => (
                     <Link
-                      className="btn h-4 min-h-4  md:btn-xs border border-zinc-500 md:text-[8px] text-[6px] md:px-2 px-1 rounded-xl hover:bg-secondary hover:text-secondary-content hover:border-transparent"
+                      className="btn h-4 min-h-4  sm:btn-xs border border-zinc-500 sm:text-[8px] text-[6px] sm:px-2 px-1 rounded-xl hover:bg-secondary hover:text-secondary-content hover:border-transparent"
                       onClick={(event) => {
                         event.stopPropagation();
                         event.preventDefault();
