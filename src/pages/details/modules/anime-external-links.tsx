@@ -12,7 +12,7 @@ export default function AnimeExternalLinks({
   const seenLinks = new Set<string>();
 
   return (
-    <div className="flex flex-col gap-2 max-w-64 p-2">
+    <div className="flex flex-col gap-2 max-w-64 p-2 max-sm:mx-auto">
       <a
         href={animeData.url}
         className="flex group p-3 max-sm:pb-1.5 max-sm:pt-1 bg-base-200 rounded-lg justify-center items-center transition-colors hover:bg-secondary hover:text-secondary-content gap-1"

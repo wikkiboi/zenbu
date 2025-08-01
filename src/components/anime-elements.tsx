@@ -3,6 +3,7 @@ import ImageWithLoader from "./image-with-title";
 import { Link, useNavigate } from "@tanstack/react-router";
 import AnimeModal from "./anime-modal";
 import { AnimatePresence, motion } from "framer-motion";
+import { scrollToTop } from "../helper";
 interface AnimeElementProps {
   animeData?: Anime[];
   isLoading: boolean;
@@ -55,7 +56,7 @@ export default function AnimeElements({
               className="my-auto"
             >
               <button
-                className="transition-all ease-in-out duration-300 flex flex-col px-3 py-2 pt-4 sm:pt-3 max-md:p-2  rounded will-change-auto mx-auto w-full"
+                className="transition-all ease-in-out duration-300 flex flex-col px-3 py-2 pt-4 sm:pt-3 max-md:p-2 rounded will-change-auto mx-auto w-full"
                 onClick={() => {
                   const dialog = document.getElementById(
                     `anime-modal-${anime.mal_id}`
@@ -80,6 +81,7 @@ export default function AnimeElements({
                         onClick={(event) => {
                           event.stopPropagation();
                           event.preventDefault();
+                          scrollToTop("instant");
                           navigate({
                             to: `/search?genres=${genre.name}`,
                           });

@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Anime } from "../../types";
+import { scrollToTop } from "../../helper";
 
 interface ShortSearchResultsProps {
   searchData?: Anime[];
@@ -29,6 +30,7 @@ export default function ShortSearchResults({
                       "search-input"
                     ) as HTMLDialogElement;
                     modal?.close();
+                    scrollToTop("instant");
                   }}
                 >
                   <img

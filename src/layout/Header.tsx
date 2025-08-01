@@ -7,6 +7,7 @@ import rankingIcon from "../svg/ranking.svg";
 import searchIcon from "../svg/magnifying-glass.svg";
 import dropdownIcon from "../svg/dropdown-icon.svg";
 import { useState, useRef, useEffect } from "react";
+import { scrollToTop } from "../helper";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -29,7 +30,11 @@ export default function Header() {
   return (
     <header className="sticky top-0 left-0 right-0 z-50 bg-base-100">
       <nav className="flex min-h-16 max-w-7xl items-center justify-center mx-auto gap-2 px-2">
-        <Link to="/" className="btn btn-ghost justify-start mr-auto">
+        <Link
+          onClick={() => scrollToTop("instant")}
+          to="/"
+          className="btn btn-ghost justify-start mr-auto"
+        >
           zenbu
         </Link>
         <button

@@ -1,5 +1,7 @@
-export const scrollToTop = () => {
+type scrollBehavior = "auto" | "smooth" | "instant";
+
+export const scrollToTop = (behavior: scrollBehavior = "smooth") => {
   setTimeout(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior });
   }, 100);
 };

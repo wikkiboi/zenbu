@@ -16,7 +16,7 @@ export default function PageLink({
   return page >= 1 && page <= lastPage ? (
     <Link
       to="."
-      onClick={scrollToTop}
+      onClick={() => scrollToTop("smooth")}
       className={`transition-all duration-200 ease-in-out btn-ghost tab border-none ${
         page === currentPage ? "tab-active" : ""
       }`}

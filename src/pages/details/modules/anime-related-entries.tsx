@@ -3,6 +3,7 @@ import pluralize from "pluralize";
 import { useState } from "react";
 import { Anime, KeyRelation } from "../../../types";
 import { Link } from "@tanstack/react-router";
+import { scrollToTop } from "../../../helper";
 
 interface AnimeRelatedEntriesProps {
   animeData: Anime;
@@ -31,6 +32,7 @@ export default function AnimeRelatedEntries({
                       {entry.type == "anime" ? (
                         <>
                           <Link
+                            onClick={() => scrollToTop("instant")}
                             to={`../${entry.mal_id}`}
                             className="text-blue-400 text-xs hover:underline"
                           >

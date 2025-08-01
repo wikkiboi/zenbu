@@ -14,8 +14,14 @@ export default function AnimePrimaryStats({
       <div className="flex flex-col max-sm:items-end max-sm:border-transparent border-r border-zinc-400 text-center sm:p-0.5 sm:px-3">
         <h2 className="text-lg leading-6 lg:text-xl">Score</h2>
         <h3 className="flex flex-row items-center justify-center sm:pr-1.5 text-xl lg:text-3xl font-bold leading-6 lg:leading-6 lg:mb-2">
-          <StarIcon className="size-3" />
-          <span>{animeData.score}</span>
+          {animeData.score ? (
+            <>
+              <StarIcon className="size-3" />
+              <span>{animeData.score}</span>
+            </>
+          ) : (
+            <span>N/A</span>
+          )}
         </h3>
         <p className="hidden md:block text-[9px] lg:text-xs">
           {animeData.scored_by ? animeData.scored_by.toLocaleString() : "-"}{" "}

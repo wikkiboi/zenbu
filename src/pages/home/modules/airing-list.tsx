@@ -32,7 +32,7 @@ export default function AiringList({ page, type }: HomeParams) {
   return (
     <>
       <LoadingBar isLoading={isLoading} isFetching={isFetching} />
-      <div className="flex flex-col max-w-7xl mx-auto">
+      <div className="flex flex-col">
         {pagination ? (
           <ButtonRow>
             <TypeButtons type={type || "tv"} />

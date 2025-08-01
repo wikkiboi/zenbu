@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { scrollToTop } from "../helper";
 
 interface NavLinkProps {
   children: React.ReactNode;
@@ -7,6 +8,7 @@ interface NavLinkProps {
 export default function NavLink({ children, path }: NavLinkProps) {
   return (
     <Link
+      onClick={() => scrollToTop("instant")}
       className="btn btn-ghost p-3"
       activeProps={{
         className: "link",

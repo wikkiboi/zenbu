@@ -1,10 +1,27 @@
 export default function Footer() {
   return (
-    <div className="text-center min-h-[100px] py-4">
-      Powered by{" "}
-      <a href="https://https://jikan.moe/" className="underline">
-        Jikan API
+    <footer className="text-center min-h-[100px] py-4">
+      <div>
+        Powered by{" "}
+        <a href="https://jikan.moe/" className="underline">
+          Jikan API
+        </a>
+      </div>
+      Deployed on{" "}
+      <a href="https://netlify.com/" className="underline hover:text-white">
+        Netlify
+      </a>{" "}
+      |{" "}
+      <a
+        href="https://github.com/wikkiboi/zenbu"
+        className="underline hover:text-white"
+      >
+        GitHub
+      </a>{" "}
+      |{" "}
+      <a href="#" className="underline hover:text-white">
+        Portfolio
       </a>
-    </div>
+    </footer>
   );
 }
