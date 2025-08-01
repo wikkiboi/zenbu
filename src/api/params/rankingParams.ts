@@ -1,4 +1,4 @@
-import { TopRankingFilters } from "../../pages/rankingpage/RankingList";
+import { TopRankingFilters } from "../../pages/ranking/modules/ranking-list";
 
 export const rankingParams = (search: Record<string, unknown>) => {
   return {

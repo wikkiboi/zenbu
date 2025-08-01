@@ -26,5 +26,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "src/pages/homepage"]
+  "include": ["src", "src/pages/home"]
 }

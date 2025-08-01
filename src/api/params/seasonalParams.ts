@@ -1,5 +1,5 @@
 import { getCurrentDate } from "../../helper/getCurrentDate";
-import { Seasons } from "../types/types";
+import { Seasons } from "../../types/types";
 
 export const seasonalParams = (search: Record<string, unknown>) => {
   const { year, season } = getCurrentDate();

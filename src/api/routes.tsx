@@ -3,11 +3,11 @@ import {
   createRoute,
   createRouter,
 } from "@tanstack/react-router";
-import Homepage from "../pages/homepage/Homepage";
-import SearchPage from "../pages/searchpage/SearchPage";
-import RankingPage from "../pages/rankingpage/RankingPage";
-import SeasonalPage from "../pages/seasonalpage/SeasonalPage";
-import AnimeDetailPage from "../pages/detailspage/AnimeDetailPage";
+import Homepage from "../pages/home/Homepage";
+import SearchPage from "../pages/search/SearchPage";
+import RankingPage from "../pages/ranking/RankingPage";
+import SeasonalPage from "../pages/seasonal/SeasonalPage";
+import AnimeDetailPage from "../pages/details/AnimeDetailPage";
 import {
   homeParams,
   searchParams,

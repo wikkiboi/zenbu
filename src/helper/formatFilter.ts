@@ -1,4 +1,4 @@
-import { TopRankingFilters } from "../pages/rankingpage/RankingList";
+import { TopRankingFilters } from "../pages/ranking/modules/ranking-list";
 
 export const formatFilter = (filter: TopRankingFilters | "score"): string => {
   if (filter === "bypopularity") {

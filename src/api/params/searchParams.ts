@@ -5,7 +5,7 @@ import {
   AnimeStatus,
   AnimeRating,
   OrderBy,
-} from "../types/types";
+} from "../../types/types";
 
 export const searchParams = (search: Record<string, unknown>): SearchParams => {
   const {

@@ -1,4 +1,4 @@
-import { Seasons } from "../api/types";
+import { Seasons } from "../types";
 
 export const getCurrentDate = () => {
   const date = new Date();

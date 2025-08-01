@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AnimeData, SearchParams } from "../types/types";
+import { AnimeData, SearchParams } from "../../types/types";
 
 export const fetchSearchAnime = async (
   params: SearchParams

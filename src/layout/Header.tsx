@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import ShortSearchBar from "../components/search/ShortSearchBar";
+import ShortSearchBar from "../components/search/short-search-bar";
 import NavLink from "./NavLink";
 import leafIcon from "../svg/maple-leaf.svg";
 import homeIcon from "../svg/home.svg";
@@ -7,8 +7,6 @@ import rankingIcon from "../svg/ranking.svg";
 import searchIcon from "../svg/magnifying-glass.svg";
 import dropdownIcon from "../svg/dropdown-icon.svg";
 import { useState, useRef, useEffect } from "react";
-
-// bg-[#7A82A]
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -29,11 +27,11 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 left-0 right-0 z-50 navbar bg-base-100">
-      <Link to="/" className="btn btn-ghost justify-start">
-        zenbu
-      </Link>
-      <nav className="ml-auto gap-2">
+    <header className="sticky top-0 left-0 right-0 z-50 bg-base-100">
+      <nav className="flex min-h-16 max-w-7xl items-center justify-center mx-auto gap-2 px-2">
+        <Link to="/" className="btn btn-ghost justify-start mr-auto">
+          zenbu
+        </Link>
         <button
           className="btn btn-ghost"
           onClick={() => {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AnimeData } from "../types/types";
+import { AnimeData } from "../../types/types";
 export const fetchSeasonalAnime = async (
   year: number,
   season: string,

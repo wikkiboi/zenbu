@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FullAnimeData } from "../types/types";
+import { FullAnimeData } from "../../types/types";
 
 export const fetchAnime = async (
   animeId: number
