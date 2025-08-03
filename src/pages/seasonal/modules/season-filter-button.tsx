@@ -50,7 +50,7 @@ export default function SeasonFilterButton() {
                   : ""
               } mb-1`}
               search={{ season, page: 1 }}
-              onClick={() => setOpen(false)} // Close dropdown on click
+              onClick={() => setOpen(false)}
             >
               {season}
             </Link>

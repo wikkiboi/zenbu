@@ -17,10 +17,6 @@ export default function Footer() {
         className="underline hover:text-white"
       >
         GitHub
-      </a>{" "}
-      |{" "}
-      <a href="#" className="underline hover:text-white">
-        Portfolio
       </a>
     </footer>
   );

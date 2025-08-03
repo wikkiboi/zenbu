@@ -36,7 +36,7 @@ export default function SeasonalList({ year, season, page }: SeasonalParams) {
       <div className="flex flex-col">
         {pagination ? (
           <ButtonRow>
-            <div className="max-sm:hidden">
+            <div className="max-sm:hidden ml-3">
               <SeasonFilterButton />
             </div>
             <div className="max-sm:hidden">

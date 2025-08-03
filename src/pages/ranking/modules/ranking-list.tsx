@@ -47,6 +47,11 @@ export default function RankingList({ filter, page }: RankingParams) {
           <ButtonRow>
             <RankingFilterButtons filter={filter} />
             {pagination && <PageButtons pagination={pagination} />}
+            {filter && (
+              <h3 className="self-end ml-auto mr-3 text-xs max-sm:text-[8px]">
+                *Rank is sorted by Score
+              </h3>
+            )}
           </ButtonRow>
         ) : (
           <ButtonRowSkeleton />

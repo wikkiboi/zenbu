@@ -68,6 +68,7 @@ export default function RankingFilterButtons({ filter }: RankingFilterProps) {
                   } mb-1`}
                   key={filter}
                   search={() => ({ filter: undefined, page: 1 })}
+                  onClick={() => setOpen(false)}
                 >
                   {formatFilter(filter)}
                 </Link>
@@ -76,9 +77,14 @@ export default function RankingFilterButtons({ filter }: RankingFilterProps) {
               return (
                 <Link
                   to="."
-                  className="btn btn-ghost"
+                  className={`btn btn-ghost ${
+                    currentFilter === filter
+                      ? "bg-secondary text-secondary-content"
+                      : ""
+                  } mb-1`}
                   key={filter}
                   search={() => ({ filter, page: 1 })}
+                  onClick={() => setOpen(false)}
                 >
                   {formatFilter(filter)}
                 </Link>
