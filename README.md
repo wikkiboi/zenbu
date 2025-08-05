@@ -4,22 +4,14 @@ Zenbu is a responsive anime search web app where users can filter, explore, and 
 
 ![screenshot](./public/logo.png)
 
-## 🔗 Live Demo
+##  Features
 
-[https://zenbu.netlify.app](https://zenbu.netlify.app)
-
----
-
-## ✨ Features
-
-- 🔎 Search and browse anime by title, type, filter, season, etc.
-- 🎴 View info for each anime in a modal and on a dedicated page
-- 🌐 Fully responsive layout (mobile-first)
-- ⚡ Fast client-side fetching/caching with TanStack Query
-- 💅 Styled with Tailwind CSS
-- 📡 Data via [Jikan API](https://jikan.moe/)
-
----
+-  Search and browse anime by title, type, filter, season, etc.
+-  View info for each anime in a modal and on a dedicated page
+-  Fully responsive layout (mobile-first)
+-  Fast client-side fetching/caching with TanStack Query
+-  Styled with Tailwind CSS
+-  Data via [Jikan API](https://jikan.moe/)
 
 ## 🛠️ Tech Stack
 
@@ -29,9 +21,7 @@ Zenbu is a responsive anime search web app where users can filter, explore, and 
 - **API**: Jikan REST API
 - **Deployment**: Netlify
 
----
-
-## 🚀 Getting Started
+##  Getting Started
 
 Clone the repo and install dependencies:
 
@@ -40,8 +30,6 @@ git clone https://github.com/wikkiboi/zenbu.git
 cd zenbu
 npm install
 ```
-
----
 
 ## Future Implementations/Features
 
