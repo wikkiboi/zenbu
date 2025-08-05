@@ -13,7 +13,7 @@ Zenbu is a responsive anime search web app where users can filter, explore, and 
 -  Styled with Tailwind CSS
 -  Data via [Jikan API](https://jikan.moe/)
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend**: React, TypeScript, Vite
 - **State / Fetching**: TanStack Query
