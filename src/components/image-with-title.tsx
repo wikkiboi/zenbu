@@ -28,7 +28,7 @@ export default function ImageWithTitle({
   return (
     <div className="relative w-full mx-auto">
       <div className="relative group">
-        <div className="relative group-hover:opacity-70 transition-opacity mb-2">
+        <div className="relative group-hover:opacity-70 transition-opacity max-sm:mb-1 mb-2">
           <ImageSkeleton isLoaded={isLoaded} />
           <img
             className="object-cover aspect-[7/10] mx-auto rounded w-full"
@@ -41,7 +41,7 @@ export default function ImageWithTitle({
           className={`absolute inset-0 flex items-end ${!isLoaded && "hidden"}`}
         >
           <div className="bg-gradient-to-t from-black/90 md:from-black/100 to-transparent w-full rounded">
-            <h2 className="line-clamp-4 p-1 sm:p-1.5 text-left text-[9px] sm:text-base md:text-lg font-bold">
+            <h2 className="line-clamp-4 p-1 sm:p-1.5 text-left text-xs sm:text-lg font-bold">
               {alt}
             </h2>
           </div>

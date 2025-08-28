@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import ShortSearchBar from "../components/search/short-search-bar";
 import NavLink from "./NavLink";
 import leafIcon from "../svg/maple-leaf.svg";
@@ -13,6 +13,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -69,20 +70,45 @@ export default function Header() {
           setIsSearchModalOpen={setIsSearchModalOpen}
         />
         <div className="hidden md:flex gap-2">
-          <NavLink path="/">
-            <img src={homeIcon} alt="Home Icon" className="w-3 pt-0.5 invert" />
+          <NavLink
+            path="/"
+            activeStyle={`${pathname === "/" ? "btn-primary" : "btn-ghost"} `}
+          >
+            <img
+              src={homeIcon}
+              alt="Home Icon"
+              className={`w-3 pt-0.5 ${pathname === "/" ? "" : "invert"}`}
+            />
             Home
           </NavLink>
-          <NavLink path="/ranking">
+          <NavLink
+            path="/ranking"
+            activeStyle={`${
+              pathname === "/ranking" ? "btn-primary" : "btn-ghost"
+            }`}
+          >
             <img
               src={rankingIcon}
               alt="Ranking Icon"
-              className="w-3 pt-0.5 invert"
+              className={`w-3 pt-0.5 ${
+                pathname === "/ranking" ? "" : "invert"
+              }`}
             />
             Rankings
           </NavLink>
-          <NavLink path="/seasonal">
-            <img src={leafIcon} alt="Leaf Icon" className="w-3 pt-0.5 invert" />
+          <NavLink
+            path="/seasonal"
+            activeStyle={`${
+              pathname === "/seasonal" ? "btn-primary" : "btn-ghost"
+            }`}
+          >
+            <img
+              src={leafIcon}
+              alt="Leaf Icon"
+              className={`w-3 pt-0.5 ${
+                pathname === "/seasonal" ? "" : "invert"
+              }`}
+            />
             Seasonal
           </NavLink>
         </div>
@@ -92,7 +118,7 @@ export default function Header() {
         >
           <button
             tabIndex={0}
-            className="btn btn-ghost"
+            className={`btn btn-ghost ${open && "border-primary"}`}
             onClick={() => setOpen(!open)}
           >
             <img
@@ -104,34 +130,53 @@ export default function Header() {
           {open && (
             <ul
               tabIndex={0}
-              className="dropdown-content menu p-2 shadow-md bg-base-300 z-[1] rounded-box w-52 max-sm:w-[96vw] mt-2"
+              className="flex flex-col gap-2 dropdown-content menu p-2 shadow-md bg-base-300 z-[1] rounded-box w-52 max-sm:w-[96vw] mt-2"
             >
               <li onClick={() => setOpen(false)}>
-                <NavLink path="/">
+                <NavLink
+                  path="/"
+                  activeStyle={`${
+                    pathname === "/" ? "btn-primary" : "btn-ghost"
+                  }`}
+                >
                   <img
                     src={homeIcon}
                     alt="Home Icon"
-                    className="w-3 pt-0.5 invert"
+                    className={`w-3 pt-0.5 ${pathname === "/" ? "" : "invert"}`}
                   />
                   Home
                 </NavLink>
               </li>
               <li onClick={() => setOpen(false)}>
-                <NavLink path="/ranking">
+                <NavLink
+                  path="/ranking"
+                  activeStyle={`${
+                    pathname === "/ranking" ? "btn-primary" : "btn-ghost"
+                  }`}
+                >
                   <img
                     src={rankingIcon}
                     alt="Ranking Icon"
-                    className="w-3 pt-0.5 invert"
+                    className={`w-3 pt-0.5 ${
+                      pathname === "/ranking" ? "" : "invert"
+                    }`}
                   />
                   Rankings
                 </NavLink>
               </li>
               <li onClick={() => setOpen(false)}>
-                <NavLink path="/seasonal">
+                <NavLink
+                  path="/seasonal"
+                  activeStyle={`${
+                    pathname === "/seasonal" ? "btn-primary" : "btn-ghost"
+                  }`}
+                >
                   <img
                     src={leafIcon}
                     alt="Leaf Icon"
-                    className="w-3 pt-0.5 invert"
+                    className={`w-3 pt-0.5 ${
+                      pathname === "/seasonal" ? "" : "invert"
+                    }`}
                   />
                   Seasonal
                 </NavLink>

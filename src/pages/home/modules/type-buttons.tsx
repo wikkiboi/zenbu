@@ -2,7 +2,6 @@ import { Link, useSearch } from "@tanstack/react-router";
 import { AnimeType } from "../../../types";
 import { formatType } from "../../../helper/formatType";
 import arrowIcon from "../../../svg/dropdown-arrow.svg";
-import filterIcon from "../../../svg/filter-button.svg";
 import { useEffect, useRef, useState } from "react";
 const animeTypes: AnimeType[] = [
   "tv",
@@ -44,7 +43,7 @@ export default function TypeButtons({ type }: TypeButtonProps) {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="btn btn-sm gap-1.5 hidden sm:flex"
+        className="btn btn-sm gap-1.5 flex"
       >
         {formatType(type)}
         <img
@@ -53,9 +52,6 @@ export default function TypeButtons({ type }: TypeButtonProps) {
           className={`w-4 invert ${open && "rotate-180"}`}
         />
       </button>
-      <div className="btn btn-sm sm:hidden p-2" onClick={() => setOpen(!open)}>
-        <img src={filterIcon} alt="Filter Icon" className="w-4 invert" />
-      </div>
       {open && (
         <div className="absolute menu bg-base-300 rounded-box z-[1] p-2 mt-1 shadow-md">
           {animeTypes.map((type) => (

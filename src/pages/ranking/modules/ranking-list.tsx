@@ -45,10 +45,12 @@ export default function RankingList({ filter, page }: RankingParams) {
       <div className="flex flex-col">
         {pagination ? (
           <ButtonRow>
-            <RankingFilterButtons filter={filter} />
+            <div className="max-sm:hidden">
+              <RankingFilterButtons filter={filter} />
+            </div>
             {pagination && <PageButtons pagination={pagination} />}
             {filter && (
-              <h3 className="self-end ml-auto mr-3 text-xs max-sm:text-[8px]">
+              <h3 className="self-end ml-auto mr-3 text-xs max-sm:text-[8px] max-sm:hidden">
                 *Rank is sorted by Score
               </h3>
             )}
@@ -56,6 +58,16 @@ export default function RankingList({ filter, page }: RankingParams) {
         ) : (
           <ButtonRowSkeleton />
         )}
+        <div className="flex items-center w-full max-w-7xl mx-auto py-2 md:px-3 relative h-12 sm:hidden">
+          <div className="flex justify-center items-center inset-0 absolute">
+            <RankingFilterButtons filter={filter} />
+          </div>
+          {filter && (
+            <h3 className="self-end ml-auto mr-3 max-sm:mr-1 text-xs max-sm:text-[8px]">
+              *Rank is sorted by Score
+            </h3>
+          )}
+        </div>
         <ListLayout isFetching={isFetching}>
           <AnimeElements
             animeData={animeData}

@@ -11,15 +11,15 @@ export default function AnimeInformation({ animeData }: AnimeInformationProps) {
         <div className="flex flex-col gap-2 text-sm">
           <p className="flex flex-col">
             <span className="text-zinc-400">Broadcast</span>
-            <span>{animeData.broadcast.string}</span>{" "}
+            <span>{animeData.broadcast.string ?? "NA"}</span>{" "}
           </p>
           <p className="flex flex-col">
             <span className="text-zinc-400">Aired from</span>
-            <span>{animeData.aired.string}</span>
+            <span>{animeData.aired.string ?? "N/A"}</span>
           </p>
           <p className="flex flex-col">
             <span className="text-zinc-400">Duration</span>
-            <span>{animeData.duration ? animeData.duration : "Unknown"}</span>
+            <span>{animeData.duration ?? "Unknown"}</span>
           </p>
         </div>
 

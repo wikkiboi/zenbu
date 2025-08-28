@@ -6,7 +6,7 @@ interface BodyProps {
 }
 export default function Body({ children }: BodyProps) {
   return (
-    <main className="p-4 min-h-screen relative w-full bg-neutral">
+    <main className="p-4 max-sm:p-3 min-h-screen relative w-full bg-neutral">
       {children}
       <ScrollToTopButton />
     </main>

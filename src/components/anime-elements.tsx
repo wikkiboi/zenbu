@@ -52,7 +52,7 @@ export default function AnimeElements({
                 transition={{ duration: 0.25, ease: "easeOut" }}
                 className="my-auto"
               >
-                <div className="flex flex-col px-3 py-2 pt-4 sm:pt-3 max-md:p-2 rounded will-change-auto mx-auto w-full">
+                <div className="flex flex-col p-1 sm:p-2 rounded will-change-auto mx-auto w-full">
                   <button
                     onClick={() => {
                       const dialog = document.getElementById(

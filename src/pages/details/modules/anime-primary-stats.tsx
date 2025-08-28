@@ -9,6 +9,16 @@ interface AnimePrimaryStatsProps {
 export default function AnimePrimaryStats({
   animeData,
 }: AnimePrimaryStatsProps) {
+  let statusStyle;
+
+  if (animeData.status === "Currently Airing") {
+    statusStyle = "text-green-600";
+  } else if (animeData.status === "Finished Airing") {
+    statusStyle = "text-yellow-400";
+  } else {
+    statusStyle = "text-orange-400";
+  }
+
   return (
     <div className="flex flex-col sm:flex-row sm:self-start sm:p-2 sm:bg-base-100 rounded gap-2 w-full">
       <div className="flex flex-col max-sm:items-end max-sm:border-transparent border-r border-zinc-400 text-center sm:p-0.5 sm:px-3">
@@ -52,7 +62,7 @@ export default function AnimePrimaryStats({
           </h2>
           <h2 className="hidden max-sm:flex flex-col items-end">
             Status
-            <span className="ml-auto max-md:text-sm">
+            <span className={`ml-auto max-md:text-sm ${statusStyle}`}>
               {animeData.status === "Currently Airing"
                 ? "Airing"
                 : animeData.status.toLocaleString()}
