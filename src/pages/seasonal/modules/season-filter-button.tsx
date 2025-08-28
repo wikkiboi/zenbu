@@ -39,7 +39,7 @@ export default function SeasonFilterButton() {
         />
       </button>
       {open && (
-        <div className="absolute menu bg-base-300 rounded-box z-[1] p-2 mt-1 shadow-md">
+        <div className="absolute menu bg-base-300 rounded-box z-[1] p-2 mt-1 shadow-md -translate-x-3">
           {["spring", "winter", "summer", "fall"].map((season) => (
             <Link
               to="."

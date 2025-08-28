@@ -130,7 +130,7 @@ export default function Header() {
           {open && (
             <ul
               tabIndex={0}
-              className="flex flex-col gap-2 dropdown-content menu p-2 shadow-md bg-base-300 z-[1] rounded-box w-52 max-sm:w-[96vw] mt-2"
+              className="flex flex-col gap-2 dropdown-content menu p-2 shadow-2xl bg-base-300 z-[1] rounded-box w-52 max-sm:w-[97vw] translate-y-1 mx-auto mt-2"
             >
               <li onClick={() => setOpen(false)}>
                 <NavLink

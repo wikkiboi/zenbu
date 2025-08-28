@@ -68,7 +68,7 @@ export default function AnimeDetailPage() {
 
                 <div className="flex flex-col max-sm:flex-1 max-sm:items-end gap-2">
                   <AnimePrimaryStats animeData={animeData} />
-                  <div className="flex flex-1 max-xs:hidden w-full items-center gap-2">
+                  <div className="flex flex-1 w-full items-center max-xs:hidden">
                     <AnimeExternalLinks animeData={animeData} />
                     <div className="max-sm:hidden">
                       <TrailerModalButton
@@ -109,6 +109,9 @@ export default function AnimeDetailPage() {
                   <p>
                     {animeData.studios.map((studio) => studio.name).join(", ")}
                   </p>
+                </div>
+                <div className="xs:hidden">
+                  <AnimeExternalLinks animeData={animeData} />
                 </div>
               </div>
             </div>

@@ -12,6 +12,7 @@ export default function NavLink({ children, path, activeStyle }: NavLinkProps) {
       onClick={() => scrollToTop("instant")}
       className={`btn p-3 ${activeStyle}`}
       to={path}
+      preload="render"
     >
       {children}
     </Link>

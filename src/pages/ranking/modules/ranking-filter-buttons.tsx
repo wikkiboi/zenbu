@@ -33,7 +33,10 @@ export default function RankingFilterButtons({ filter }: RankingFilterProps) {
   const { filter: currentFilter = "score" } = useSearch({ from: "/ranking" });
 
   return (
-    <div ref={dropdownRef} className="dropdown z-10 ml-3">
+    <div
+      ref={dropdownRef}
+      className="dropdown dropdown-center z-10 ml-3 max-sm:ml-0"
+    >
       <button
         tabIndex={0}
         className="btn btn-sm flex"
@@ -47,7 +50,7 @@ export default function RankingFilterButtons({ filter }: RankingFilterProps) {
         />
       </button>
       {open && (
-        <div className="dropdown-content menu bg-base-300 rounded-box z-[1] p-2 mt-1 shadow-md">
+        <div className="dropdown-content menu bg-base-300 rounded-box z-[1] p-2 mt-1 shadow-md -translate-x-3">
           {rankingFilters.map((filter) => {
             if (filter === "score") {
               return (

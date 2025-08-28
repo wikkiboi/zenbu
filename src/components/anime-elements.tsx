@@ -40,7 +40,7 @@ export default function AnimeElements({
   );
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence>
       {uniqueData && !isLoading
         ? uniqueData.map((anime: Anime) => {
             return (

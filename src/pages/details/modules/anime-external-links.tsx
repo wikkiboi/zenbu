@@ -12,7 +12,7 @@ export default function AnimeExternalLinks({
   const seenLinks = new Set<string>();
 
   return (
-    <div className="flex flex-col gap-2 max-w-64 p-2 max-sm:mx-auto">
+    <div className="flex flex-col flex-wrap max-xs:flex-row max-xs:justify-center gap-2 max-w-64 p-2 pb-0 max-sm:mx-auto">
       <a
         href={animeData.url}
         className="flex group p-3 max-sm:pb-1.5 max-sm:pt-1 bg-base-200 rounded-lg justify-center items-center transition-colors hover:bg-secondary hover:text-secondary-content gap-1"
@@ -22,7 +22,7 @@ export default function AnimeExternalLinks({
           alt="My Anime List Icon"
           className="size-4 mt-1 invert group-hover:invert-0 transition"
         />
-        <span className="font-bold text-xs">MyAnimeList</span>
+        <span className="font-bold text-xs max-xs:hidden">MyAnimeList</span>
       </a>
       {animeData.external.map((link) => {
         if (
@@ -47,7 +47,7 @@ export default function AnimeExternalLinks({
               {link.url.includes("en.wikipedia") && (
                 <Globe className="size-3" />
               )}
-              <span className="font-bold">{link.name}</span>
+              <span className="font-bold max-xs:hidden">{link.name}</span>
             </a>
           );
         }
